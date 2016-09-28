@@ -1,0 +1,6 @@
+[
+	{
+		"measure": "Temperature, water",
+		"units": ["deg_c", "deg_f"]
+	}
+]
