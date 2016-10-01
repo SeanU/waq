@@ -1,5 +1,9 @@
 [
 	{
+		"measure": "acetone",
+		"units": ["ppm", "ug/l"]
+	},
+	{
 		"measure": "Temperature, water",
 		"units": ["deg_c", "deg_f"]
 	}
