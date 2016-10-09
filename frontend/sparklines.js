@@ -34,7 +34,6 @@ function chooseDataColumn(col, data) {
 }
 
 
-
 //http://www.tnoda.com/blog/2013-12-19
 function sparkline(elemId, data) {
 
@@ -44,12 +43,7 @@ function sparkline(elemId, data) {
 
   function prettyPrint(id,value){
     value = numberWithCommas(value);
-    if (id.indexOf("cost") > -1){
-      return "$"+value;
-    }
-    else{
-      return value;
-    }
+    return value;
   }
 
   data.forEach(function(d){
@@ -73,7 +67,7 @@ function sparkline(elemId, data) {
       if(!(elemId.indexOf("avgRating") > -1)){
 
         if(isFlipped === "false"){
-          d3.select("#"+"current-path-"+elemId.replace("#","")).transition().duration(animDuration/1.5).style("opacity",0)
+          d3.select("#"+"current-path-"+elemId.replace("#","")).transition().duration(animDuration/1.5).style("opacity",0);
           d3.select("#this-spark-circle-"+elemId.replace("#","")).transition().duration(animDuration/1.5).style("opacity",0);
           d3.select("#text-value-"+elemId.replace("#","")).transition().duration(animDuration/1.5).style("opacity",0);
 
@@ -83,7 +77,7 @@ function sparkline(elemId, data) {
         }
 
         else{
-          d3.select("#"+"current-path-"+elemId.replace("#","")).transition().delay(animDuration/1.5).duration(animDuration/2).style("opacity",1)
+          d3.select("#"+"current-path-"+elemId.replace("#","")).transition().delay(animDuration/1.5).duration(animDuration/2).style("opacity",1);
           d3.select("#this-spark-circle-"+elemId.replace("#","")).transition().delay(animDuration/1.5).duration(animDuration/2).style("opacity",1);
           d3.select("#text-value-"+elemId.replace("#","")).transition().delay(animDuration/1.5).duration(animDuration/2).style("opacity",1);
 
@@ -107,13 +101,35 @@ function sparkline(elemId, data) {
                .x(function(d) { return x(d.date); })
                .y(function(d) { return y(d.value); });
 
+
+
   var svg = d3.select(elemId)
               .append('svg')
               .attr('width', width)
               .attr("class","sparkline-wrapper-svg")
               .attr('height', height)
               .append('g')
-              .attr('transform', 'translate(0, 2)');
+              // .attr('transform', 'translate(0, 2)')
+              .on("mousemove", function(){  
+                mousex = d3.mouse(this);
+                console.log(mousex)
+                mousex = mousex[0];
+                d3.selectAll(".sparkvert")
+                  .attr("x", mousex)})
+              .on("mouseover", function(){  
+                mousex = d3.mouse(this);
+                mousex = mousex[0];
+                d3.selectAll(".sparkvert")
+                  .attr("x", mousex)});
+
+  svg.append('rect')
+     .attr('class', 'sparkbackground')
+     .attr('id', 'this-spark-bkg-'+elemId.replace('#',''))
+     .attr('height', height)
+     .attr('width', width-10)
+     .attr('x', 0)
+     .attr('y', 0)
+     .attr('fill','white');
 
   svg.append('path')
      .datum(data)
@@ -127,7 +143,15 @@ function sparkline(elemId, data) {
      .attr('cx', x(data[data.length-1].date))
      .attr('cy', y(data[data.length-1].value))
      .style("opacity",0)
-     .attr('r', 2);  
+     .attr('r', 3);
+
+  svg.append('rect')
+      .attr('class', 'sparkvert')
+      .attr('id', 'this-spark-vert-'+elemId.replace('#',''))
+      .attr('height', height)
+      .attr('width', 1)
+      .attr('x', 0)
+      .attr('y', 0)
 
   var totalLength = d3.select("#current-path-"+elemId.replace("#","")).node().getTotalLength();
 
@@ -160,13 +184,8 @@ function sparkline(elemId, data) {
       .text(prettyPrint(elemId,getAvg()));
 
   d3.select(elemId)
-    .attr("data-flipped",false)
     .on("click",clickEventHandler);
-
 }
-
-
-
 
 $( document ).ready(function() {
 

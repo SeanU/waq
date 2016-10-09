@@ -35,7 +35,7 @@ body{
 #c2-label, #c3-label, #c4-label, #c5-label,
  #c6-label, #c7-label, #c8-label, #c9-label,
  #c10-label{
-  margin-top: 38px;
+  margin-top: 28px;
 }
 
 .title{
@@ -68,9 +68,9 @@ body{
   display: inline-block;
   height: 40px;
   cursor:pointer;
-  width:70%;
+  width:80%;
   color: black;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 #insight-row-avgRating{
