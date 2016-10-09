@@ -1,0 +1,101 @@
+body{
+  font-family: Helvetica;
+}
+
+#graph-container{
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  left: 5%;
+  height:175px;
+}
+
+#sparkline-title{
+  display: block;
+  position: relative;
+  width: 70%;
+  margin-left: 15%;
+  text-align: center;
+  border-bottom: thin solid black;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.label-wrapper{
+  position: absolute;
+  width: 10%;
+  display: inline-block;
+  text-align: right;
+  top:35px;
+
+}
+
+#c2-label, #c3-label, #c4-label, #c5-label,
+ #c6-label, #c7-label, #c8-label, #c9-label,
+ #c10-label{
+  margin-top: 38px;
+}
+
+.title{
+  margin-bottom: 10px;
+}
+
+#a-info-wrapper{
+  margin-left: 10%;
+}
+
+.col-wrapper{
+  position: relative;
+  display: inline-block;
+  width: 40%;
+  text-align: center;
+}
+
+.sparkline {
+  fill: none;
+  stroke: #000;
+  stroke-width: 0.75px;
+}
+.sparkcircle {
+  fill: red;
+  stroke: none;
+}
+
+.sparkline-wrapper{
+  position: relative;
+  display: inline-block;
+  height: 40px;
+  cursor:pointer;
+  width:70%;
+  color: black;
+  margin-bottom: 15px;
+}
+
+#insight-row-avgRating{
+  top:-12px;
+}
+
+.text-value{
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.text-flip-number{
+  position: absolute;
+  color:steelblue;
+  font-size: 18px;
+  text-align: center;
+  left: 105%;
+  top:-2px;
+}
+
+.flip-descriptor-tag{
+  position: absolute;
+  font-size: 16px;
+  text-align: center;
+  left:10%;
+  top:8px;
+}
