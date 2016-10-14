@@ -1,0 +1,315 @@
+Measure|Limit|MeasureGroup
+1,1,1-Trichloroethane|.2 mg/L|1,1,1-Trichloroethane 
+1,1,2-Trichloroethane|.005 mg/L|1,1,2-Trichloroethane 
+1,1-Dichloroethylene|.007 mg/L|1,1-Dichloroethylene 
+1,2,4-Trichlorobenzene|.07 mg/L|1,2,4-Trichlorobenzene 
+1,2-Dibromo-3-chloropropane|.0002 mg/L|1,2-Dibromo-3-chloropropane 
+1,2-Dichloroethane|.005 mg/L|1,2-Dichloroethane 
+1,2-Dichloropropane|.005 mg/L|1,2-Dichloropropane 
+2,2',3,3',4,4',5,5',6-Nonachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,4',5,5'-Octachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,4',5,6'-Octachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,4',5,6,6'-Nonachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,4',5,6-Octachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,4',5-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,4'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,5',6'-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,5',6,6'-Octachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,5,5',6-Octachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,5,5'-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,5,6'-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,5,6,6'-Octachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,6'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,6,6'-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4,6-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',4-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',5,5',6-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',5,5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',6,6'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,3',6-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4',5',6-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4',5'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4',5,5',6-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4',5,5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4',5,6,6'-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,4',5',6-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,4',5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,4',5,5',6-Octachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,4',5,5'-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,4',5,6'-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,4',5,6-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,4',5-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,4',6,6'-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,5',6-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,5'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,5,5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,5,6-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,6'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,4,6,6'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,5',6-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,5'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,5,5',6-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,5,5'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,5,6'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,5,6,6'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,5-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3,6,6'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',3-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,2',4,4',5,5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',4,4',5-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',4,4',6,6'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,2',4,5',6-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',4,5'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,2',4,5,5'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',4,5-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,2',4,6,6'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,2',4-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,2',5,5'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,2',5-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,2',6-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,2'-Dichlorobiphenyl|.0005 mg/L|PCBs
+2,3',4',5-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3',4,4',5',6-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,3',4,4',5'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3',4,4',5,5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,3',4,4',5-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3',4,4',6-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3',4,4'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3',4,5',6-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3',4,5'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3',4,5,5'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3',4-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,3',5'-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,3',5,5'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3',6-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4',5',6-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4',5'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4',5,5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4',6-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,4',5',6-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,4',5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,4',5,5',6-Octachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,4',5,5'-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,4',5,6-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,4',5-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,4',6-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,4'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,5',6-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,5,5',6-Heptachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,5,5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,5-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4,6-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',4-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',5,5',6-Hexachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',5,5'-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',5,6-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3,3',5-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3,4',5-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3,4',6-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3,4'-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,3,4,4',5-Pentachlorobiphenyl|.0005 mg/L|PCBs
+2,3,4,4'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3,5,6-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,3,5-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,3,6-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,3,6-Trichlorophenol|.0005 mg/L|PCBs
+2,3,7,8-Tetrachlorodibenzo-p-dioxin|0.00000003 mg/L|dioxin
+2,3-Dichlorobiphenyl|.0005 mg/L|PCBs
+2,4',5-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,4'-Dichlorobiphenyl|.0005 mg/L|PCBs
+2,4,4',5-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+2,4,4'-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,4,5-Trichlorobiphenyl|.0005 mg/L|PCBs
+2,4-D|.07 mg/L|2,4-D 
+2,4-Dichlorobiphenyl|.0005 mg/L|PCBs
+2,5-Dichlorobiphenyl|.0005 mg/L|PCBs
+2,6-Dichlorobiphenyl|.0005 mg/L|PCBs
+2-Chlorobiphenyl|.0005 mg/L|PCBs
+3,3',4,4',5,5'-Hexachlorobiphenyl|.0005 mg/L|PCBs
+3,3',4,4',5-Pentachlorobiphenyl|.0005 mg/L|PCBs
+3,3',4,4'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+3,3',4,5'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+3,3',4-Trichlorobiphenyl|.0005 mg/L|PCBs
+3,3',5,5'-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+3,3',5-Trichlorobiphenyl|.0005 mg/L|PCBs
+3,3'-Dichlorobenzidine|.0005 mg/L|PCBs
+3,3'-Dichlorobiphenyl|.0005 mg/L|PCBs
+3,4',5-Trichlorobiphenyl|.0005 mg/L|PCBs
+3,4,4',5-Tetrachlorobiphenyl|.0005 mg/L|PCBs
+3,4,4'-Trichlorobiphenyl|.0005 mg/L|PCBs
+3,4,5-Trichlorobiphenyl|.0005 mg/L|PCBs
+3,5-Dichlorobiphenyl|.0005 mg/L|PCBs
+3-Chlorobiphenyl|.0005 mg/L|PCBs
+4,4'-Dichlorobiphenyl|.0005 mg/L|PCBs
+4-Chlorobiphenyl|.0005 mg/L|PCBs
+Alachlor|.0002 mg/L|Alachlor 
+Antimony|.006 mg/L|Antimony 
+Aroclor (unspecified)|.0005 mg/L|PCBs
+Aroclor 1016|.0005 mg/L|PCBs
+Aroclor 1016 mixt. with Aroclor 1242|.0005 mg/L|PCBs
+Aroclor 1221|.0005 mg/L|PCBs
+Aroclor 1232|.0005 mg/L|PCBs
+Aroclor 1242|.0005 mg/L|PCBs
+Aroclor 1248|.0005 mg/L|PCBs
+Aroclor 1254|.0005 mg/L|PCBs
+Aroclor 1260|.0005 mg/L|PCBs
+Arsenic|.010 mg/L|Arsenic 
+Asbestos|7 million fibers per liter|Asbestos 
+Atrazine|.0003 mg/L|Atrazine
+Atrazine-d5 (ethyl-d5)|.0003 mg/L|Atrazine
+Barium|2 mg/L|Barium 
+Benzene|.005 mg/L|Benzene
+Benzene, (1-ethyldecyl)-|.005 mg/L|Benzene
+Benzene, 1,1'-oxybis[2,4-dibromo-|.005 mg/L|Benzene
+Benzene, 1,1-oxybis[3,4-dibromo-|.005 mg/L|Benzene
+Benzene, 1,2,3,4,5-pentabromo-6-(2,3,4,5-tetrabromophenoxy)-***retired***use Nonabromophenoxybenzene|.005 mg/L|Benzene
+Benzene, 1,2,3,4,5-pentabromo-6-(2,3,5,6-tetrabromophenoxy)-|.005 mg/L|Benzene
+Benzene, 1,2,3,4,5-pentabromo-6-(2,4-dibromophenoxy)-***retired***use 2,2',3,4,4',5,6-Heptabromodiphenyl ether|.005 mg/L|Benzene
+Benzene, 1,2,3,4,5-pentabromo-6-(3,4-dibromophenoxy)-|.005 mg/L|Benzene
+Benzene, 1,2,3,5-tetrabromo-4-(2,4,5-tribromophenoxy)-***retired***use 2,2',3,4,4',5',6-Heptabromodiphenyl ether|.005 mg/L|Benzene
+Benzene, 1,2,3-tribromo-4-(2,3,4-tribromophenoxy)-|.005 mg/L|Benzene
+Benzene, 1,2,3-tribromo-5-(3,4-dibromophenoxy)-|.005 mg/L|Benzene
+Benzene, 1,2,4-tribromo-5-(2,4-dibromophenoxy)-|.005 mg/L|Benzene
+Benzene, 1,2-dibromo-4-(2,4-dibromophenoxy)-|.005 mg/L|Benzene
+Benzene, 1,2-dibromo-4-(3,5-dibromophenoxy)-|.005 mg/L|Benzene
+Benzene, 1,3(and 1,4)-dimethyl- Chemical m(and p)-xylene|.005 mg/L|Benzene
+Benzene, 1,3,5-tribromo-2-(2,4,5-tribromophenoxy)-***retired***use 2,2',4,4',5',6-HXBDE|.005 mg/L|Benzene
+Benzene, 1,3,5-tribromo-2-(2,4,6-tribromophenoxy)-|.005 mg/L|Benzene
+Benzene, 1,3,5-tribromo-2-(4-bromophenoxy)-|.005 mg/L|Benzene
+Benzene, 1,3-dibromo-2-(3,4-dibromophenoxy)-|.005 mg/L|Benzene
+Benzene, 1-chloro-2-[2,2,2-trichloro-1-(4-chlorophenyl)ethyl]-, 1,1'-(2,2,2-trichloroethylidene)bis[4-chlorobenzene], 1-chloro-2-[2,2-dichloro-1-(4-chlorophenyl)ethyl]benzene], 1,1'-(2,2-dichloroethylidene)bis[4-chlorobenzene], 1-chloro-2-[2,2-dichloro-1-(4-chlorophenyl)ethenyl]benzene, and 1,1'-(dichloroethenylidene)bis[4-chlorobenzene] and metabolites|.005 mg/L|Benzene
+Benzene, 1-chloro-4-(methylsulfonyl)-|.005 mg/L|Benzene
+Benzene, 1-methoxy-2-[2,2,2-trichloro-1-(4-methoxyphenyl)ethyl]-|.005 mg/L|Benzene
+Benzene, 2,4-dibromo-1-phenoxy-|.005 mg/L|Benzene
+Benzene, C6-12-alkyl derivs.|.005 mg/L|Benzene
+Benzene, pentachloromethoxy-|.005 mg/L|Benzene
+Benzo[a]pyrene|.0002 mg/L|Benzo[a]pyrene
+Beryllium|.004 mg/L|Beryllium 
+Cadmium|.005 mg/L|Cadmium 
+Carbofuran|.04 mg/L|Carbofuran 
+Carbon tetrachloride|.005 mg/L|Carbon tetrachloride 
+Chlordane|.002 mg/L|Chlordane 
+Chlorine|4 mg/L|Chlorine 
+Chlorobenzene|.1 mg/L|Chlorobenzene 
+Chlorodibromomethane|.080 mg/L|TTHMs
+Chloroform|.080 mg/L|TTHMs
+Chromium|.1 mg/L|Chromium
+Chromium(VI)|.1 mg/L|Chromium
+Copper|1.3 mg/L|Copper 
+Cyanide|.2 mg/L|Cyanide 
+Dalapon|.2 mg/L|Dalapon 
+Decachlorobiphenyl|.0005 mg/L|PCBs
+Di(2-ethylhexyl) adipate|.04 mg/L|Di(2-ethylhexyl) adipate 
+Di(2-ethylhexyl) phthalate|.0006 mg/L|Di(2-ethylhexyl) phthalate 
+Dibromoacetic acid|.060 mg/L|HAA5
+Dichloroacetic acid|.060mg/L|HAA5
+Dichlorobromomethane|.080 mg/L|TTHMs
+Dinoseb|.007 mg/L|Dinoseb 
+Diquat|.02 mg/L|Diquat 
+Endrin|.002 mg/L|Endrin 
+Ethylbenzene|.7 mg/L|Ethylbenzene 
+Ethylene dibromide|.00005 mg/L|Ethylene dibromide 
+Fluoride|4 mg/L|Fluoride 
+Glyphosate|.7 mg/L|Glyphosate 
+Heptachlor|.0004 mg/L|Heptachlor 
+Heptachlor epoxide|.0002 mg/L|Heptachlor epoxide 
+Hexachlorobenzene|.001 mg/L|Hexachlorobenzene 
+Hexachlorocyclopentadiene|.05 mg/L|Hexachlorocyclopentadiene 
+Inorganic nitrogen (nitrate and nitrite)|1 mg/L|nitrite
+Inorganic nitrogen (nitrate and nitrite) as N|1 mg/L|nitrite
+Lead|.015 mg/L|Lead
+Lead-210|.015 mg/L|Lead
+Lindane|.0002 mg/L|Lindane 
+Mercury|.002 mg/L|Mercury 
+Methoxychlor|.04 mg/L|Methoxychlor 
+Nitrate|10 mg/L|nitrate
+Nitrate as N|10 mg/L|nitrate
+Nitrite|1 mg/L|nitrite
+Nitrite as N|1 mg/L|nitrite
+Oxamyl|.2 mg/L|Oxamyl 
+PCB-105/132/153|.0005 mg/L|PCBs
+PCB-107/124|.0005 mg/L|PCBs
+PCB-110/115|.0005 mg/L|PCBs
+PCB-123/149|.0005 mg/L|PCBs
+PCB-128/166|.0005 mg/L|PCBs
+PCB-128/167|.0005 mg/L|PCBs
+PCB-129/138/160/163|.0005 mg/L|PCBs
+PCB-132/153|.0005 mg/L|PCBs
+PCB-135/151/154|.0005 mg/L|PCBs
+PCB-138/160|.0005 mg/L|PCBs
+PCB-139/140|.0005 mg/L|PCBs
+PCB-147/149|.0005 mg/L|PCBs
+PCB-153/168|.0005 mg/L|PCBs
+PCB-153/173/201|.0005 mg/L|PCBs
+PCB-156/157|.0005 mg/L|PCBs
+PCB-17/18|.0005 mg/L|PCBs
+PCB-170/190|.0005 mg/L|PCBs
+PCB-171/173|.0005 mg/L|PCBs
+PCB-180/193|.0005 mg/L|PCBs
+PCB-182/187|.0005 mg/L|PCBs
+PCB-183/185|.0005 mg/L|PCBs
+PCB-195/208|.0005 mg/L|PCBs
+PCB-197/200|.0005 mg/L|PCBs
+PCB-198/199|.0005 mg/L|PCBs
+PCB-20/28|.0005 mg/L|PCBs
+PCB-21/33|.0005 mg/L|PCBs
+PCB-28/31|.0005 mg/L|PCBs
+PCB-37/42|.0005 mg/L|PCBs
+PCB-40/41/71|.0005 mg/L|PCBs
+PCB-44/47/65|.0005 mg/L|PCBs
+PCB-45/51|.0005 mg/L|PCBs
+PCB-49/69|.0005 mg/L|PCBs
+PCB-5/8|.0005 mg/L|PCBs
+PCB-50/53|.0005 mg/L|PCBs
+PCB-59/62/75|.0005 mg/L|PCBs
+PCB-61/70/74/76|.0005 mg/L|PCBs
+PCB-61/74|.0005 mg/L|PCBs
+PCB-66/95|.0005 mg/L|PCBs
+PCB-70/76|.0005 mg/L|PCBs
+PCB-77/110|.0005 mg/L|PCBs
+PCB-83/99|.0005 mg/L|PCBs
+PCB-85/116/117|.0005 mg/L|PCBs
+PCB-86/87/97/108/119/125|.0005 mg/L|PCBs
+PCB-87/115|.0005 mg/L|PCBs
+PCB-88/91|.0005 mg/L|PCBs
+PCB-90/101|.0005 mg/L|PCBs
+PCB-93/95/98/100/102|.0005 mg/L|PCBs
+Pentachlorophenol|.001 mg/L|Pentachlorophenol 
+Picloram|.5 mg/L|Picloram 
+Polychlorinated biphenyls|.0005 mg/L|PCBs
+Selenium|.05 mg/L|Selenium 
+Silvex|.05 mg/L|Silvex
+Simazine|.004 mg/L|Simazine 
+Styrene|.1 mg/L|Styrene 
+Tetrachloroethylene|.005 mg/L|Tetrachloroethylene 
+Thallium|.002 mg/L|Thallium 
+Toluene|1 mg/L|Toluene 
+Total Dichloro Biphenyls|.0005 mg/L|PCBs
+Total Heptachloro Biphenyls|.0005 mg/L|PCBs
+Total Hexachloro Biphenyls|.0005 mg/L|PCBs
+Total Pentachloro Biphenyls|.0005 mg/L|PCBs
+Total Trichloro Biphenyls|.0005 mg/L|PCBs
+Toxaphene|.003 mg/L|Toxaphene 
+Tribromomethane|.080 mg/L|TTHMs
+Trichloroethylene|.005 mg/L|Trichloroethylene 
+Turbidity|1 NTU, 0.3 NTU in 95% of samples, 5NTU for non-direct filtration|Turbidity
+Turbidity severity|1 NTU, 0.3 NTU in 95% of samples, 5NTU for non-direct filtration|Turbidity
+Turbidity, hellige|1 NTU, 0.3 NTU in 95% of samples, 5NTU for non-direct filtration|Turbidity
+Vinyl chloride|.002 mg/L|Vinyl chloride 
+Xylene|10|xylene
+Xylenes mix of m + o + p|10|xylene
+Xylenes, m- & p- Mix|10|xylene
+cis-1,2-Dichloroethylene|.07 mg/L|cis-1,2-Dichloroethylene 
+m,p-Xylene|10|xylene
+m-Xylene|10|xylene
+meta & para Xylene mix|10|xylene
+o-Dichlorobenzene|.6 mg/L|o-Dichlorobenzene 
+o-Xylene|10|xylene
+o-Xylene, mixt. with m-xylene and p-xylene|10|xylene
+p-Dichlorobenzene|.075 mg/L|p-Dichlorobenzene 
+p-Xylene|10|xylene
+trans-1,2-Dichloroethene***retired***use trans-1,2-Dichloroethylene|.1 mg/L|trans-1,2-Dichloroethylene 
+trans-1,2-Dichloroethylene|.1 mg/L|trans-1,2-Dichloroethylene 
