@@ -1,5 +1,0 @@
-# Temperature
-kelvin = [temperature]; offset: 0 = K = degK
-degC = kelvin; offset: 273.15 = celsius = deg_c
-degR = 5 / 9 * kelvin; offset: 0 = rankine
-degF = 5 / 9 * kelvin; offset: 255.372222 = fahrenheit = deg_f
