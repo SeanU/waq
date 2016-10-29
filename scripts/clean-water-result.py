@@ -1,7 +1,6 @@
 #!/usr/bin/evn python
 
 import csv
-import numpy as np
 import pandas as pd
 import re
 
@@ -19,7 +18,7 @@ unmatched_measures = 'unmatched-measures.csv'
 unmapped_units = 'unmapped-units.csv'
 over1k = 'over-one-thousand.csv'
 less_than_zero = 'less-than-zero.csv'
-result_clean = 'result-clean.csv'
+result_clean = 'clean.csv'
 
 
 def makepath(suf):
@@ -185,4 +184,4 @@ keepers.columns = ['Medium',
                    'Comment']
 
 print("Saving output")
-keepers.to_csv(makepath(result_clean), index=False, quoting = csv.QUOTE_ALL)
+keepers.to_csv(makepath(result_clean), index=False, quoting=csv.QUOTE_ALL)
