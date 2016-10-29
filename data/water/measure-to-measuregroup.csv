@@ -1,32 +1,32 @@
-Measure,Pattern,MeasureGroup,MCLG,Unit
-Antimony,antimony,Antimony,0.006,mg/L
-Arsenic,arsenic,Arsenic,0,mg/L
-Barium,barium,Barium,2,mg/L
-Beryllium,beryllium,Beryllium,0.004,mg/L
-Cadmium,cadmium,Cadmium,0.005,mg/L
-Chromium,chromium,Chromium,0.1,mg/L
-Copper,copper,Copper,1.3,mg/L
-Fluoride,fluoride,Fluoride,4,mg/L
-,monobromoacetic acid,HAA5,0.06,mg/L
-,monochloroacetic acid,HAA5,0.07,mg/L
-Dibromoacetic acid,dibromoacetic acid,HAA5,0.06,mg/L
-Dichloroacetic acid,dichloroacetic acid,HAA5,0,mg/L
-,trichloroacetic acid,HAA5,0.02,mg/L
-Lead,lead(-\d+)?,Lead,0,mg/L
-Mercury,mercury,Mercury,0.002,mg/L
-Nitrate,nitrate( as N)?,nitrate,10,mg/L
-Inorganic nitrogen (nitrate and nitrite),inorganic nitrogen.*,nitrate,1,mg/L
-Nitrite,nitrite( as N)?,nitrite,1,mg/L
-"2,2',3,3',4,4',5,5'-Octachlorobiphenyl",Aroclor.*,PCBs,0,mg/L
-"2,2',3,3',4,4',5,5',6-Nonachlorobiphenyl","\d'?(,\d'?)*-\w*?chlorobiphenyl",PCBs,0,mg/L
-"2,2',3,3',4,4',5,6-Octachlorobiphenyl",total \w*?chloro biphenyls,PCBs,0,mg/L
-"2,2',3,3',4,4',5,6,6'-Nonachlorobiphenyl",polychlorinated biphenyls,PCBs,0,mg/L
-"2,2',3,3',4,4',5,6'-Octachlorobiphenyl",PCB-\d+(\/\d+)*,PCBs,0,mg/L
-Decachlorobiphenyl,\w+chlorobiphenyl,PCBs,0,mg/L
-Selenium,selenium,Selenium,0.05,mg/L
-Simazine,simazine,Simazine,0.004,mg/L
-Chlorodibromomethane,chlorodibromomethane,TTHMs,0.06,mg/L
-Chloroform,trichloromethane|chloroform,TTHMs,0.07,mg/L
-Dichlorobromomethane,dichlorobromomethane,TTHMs,0,mg/L
-Tribromomethane,tribromomethane|bromoform,TTHMs,0,mg/L
-m-Xylene,.*xylene.*,xylene,10,mg/L
+Pattern,MeasureGroup,MCLG,Unit
+antimony,Antimony,0.006,mg/L
+arsenic,Arsenic,0,mg/L
+barium,Barium,2,mg/L
+beryllium,Beryllium,0.004,mg/L
+cadmium,Cadmium,0.005,mg/L
+chromium,Chromium,0.1,mg/L
+copper,Copper,1.3,mg/L
+fluoride,Fluoride,4,mg/L
+monobromoacetic acid,HAA5,0.06,mg/L
+monochloroacetic acid,HAA5,0.07,mg/L
+dibromoacetic acid,HAA5,0.06,mg/L
+dichloroacetic acid,HAA5,0,mg/L
+trichloroacetic acid,HAA5,0.02,mg/L
+lead(?:-\d+)?,Lead,0,mg/L
+mercury,Mercury,0.002,mg/L
+nitrate(?: as N)?,nitrate,10,mg/L
+inorganic nitrogen.*,nitrate,1,mg/L
+nitrite(?: as N)?,nitrite,1,mg/L
+Aroclor.*,PCBs,0,mg/L
+"\d'?(?:,\d'?)*-\w*?chlorobiphenyl",PCBs,0,mg/L
+total \w*?chloro biphenyls,PCBs,0,mg/L
+polychlorinated biphenyls,PCBs,0,mg/L
+PCB-\d+(?:\/\d+)*,PCBs,0,mg/L
+\w+chlorobiphenyl,PCBs,0,mg/L
+selenium,Selenium,0.05,mg/L
+simazine,Simazine,0.004,mg/L
+chlorodibromomethane,TTHMs,0.06,mg/L
+trichloromethane|chloroform,TTHMs,0.07,mg/L
+dichlorobromomethane,TTHMs,0,mg/L
+tribromomethane|bromoform,TTHMs,0,mg/L
+.*xylene.*,xylene,10,mg/L
