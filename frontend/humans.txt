@@ -1,0 +1,51 @@
+    
+/* TEAM */
+
+                                
+    Benevolent Dictator: Ashley Levato.
+    Location: Statistical Area #6, USA.
+
+    Water Data ETL & Awesomization: Sean Underwood.
+    Location: Statisitical Area #3, USA.
+
+    Air Data ETL & Awesomization: Nina Kuklisova.
+    Location: Statistical Area #6, USA.
+                             
+    Back End Infrastructure:  Ankit Tharwani
+    Location:  Metro Area #1, UK
+
+    UI & Maps Integratoin: James King.
+    Location:  Statistical Area #19, USA.
+
+                        
+                                
+/* THANKS */
+
+                                
+    Faculty Advisor: Coco Krumme
+    Location: Statistical Area #11, USA
+
+    Faculty Advisor: David Steier
+    Location: Different Every Time
+
+    Water Quality SME:  Ashley's Sister
+    Location: Somewhere Over the Rainbow
+
+
+                                
+/* SITE */
+
+                                
+    Last update: 2016/10 
+
+                                
+    Components: jQuery, easyUI.
+
+                                
+    Software: Sublime, Sublime FTP, Google Maps, Goodle Places, Google Cloud Services, Amazon AWS  
+                Hive, Hadoop, D3, Apache Web Server, Ubuntu GNU/Linux, Git/Github
+
+
+    Icon design: Vectors Market @ flaticon.com
+           
+                
