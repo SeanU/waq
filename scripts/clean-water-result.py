@@ -1,4 +1,4 @@
-#!/usr/bin/evn python
+#!/usr/bin/env python
 
 import csv
 import pandas as pd
@@ -37,7 +37,16 @@ data_columns = [
     'CharacteristicName',
     'ResultMeasureValue',
     'ResultMeasure/MeasureUnitCode',
-    'ResultCommentText'
+    'ResultCommentText',
+    'OrganizationIdentifier',
+    'OrganizationFormalName',
+    'ActivityTypeCode',
+    'ResultSampleFractionText',
+    'MeasureQualifierCode',
+    'ResultStatusIdentifier',
+    'ResultAnalyticalMethod/MethodIdentifier',
+    'ResultAnalyticalMethod/MethodName',
+    'ResultLaboratoryCommentText'
 ]
 
 activity_media = ['Water']
@@ -87,13 +96,20 @@ print("{0} rows remain".format(len(data)))
 
 
 print("Assigning measure data. . .")
+measureMap = pd.DataFrame(data.CharacteristicName.unique(),
+                          columns=['CharacteristicName'])
+
 for _, row in measures.iterrows():
-    print("\t" + row.Pattern)
     pattern = re.compile(row.Pattern, re.IGNORECASE)
-    matches = data.CharacteristicName.str.contains(row.Pattern, case=False)
-    data.loc[matches, 'MeasureGroup'] = row.MeasureGroup
-    data.loc[matches, 'MCLG'] = row.MCLG
-    data.loc[matches, 'Unit'] = row.Unit
+    matches = measureMap.CharacteristicName.str.contains(row.Pattern,
+                                                         case=False)
+    measureMap.loc[matches, 'MeasureGroup'] = row.MeasureGroup
+    measureMap.loc[matches, 'MCLG'] = row.MCLG
+    measureMap.loc[matches, 'Unit'] = row.Unit
+
+measureMap = measureMap[pd.notnull(measureMap.MeasureGroup)]
+data = pd.merge(data, measureMap, on='CharacteristicName')
+
 
 print("Finding non-matched measures. . . ")
 nonMatchingMeasures = \
@@ -127,32 +143,6 @@ merged.Value = merged.Value * merged.Multiplier
 print("{0} rows remain".format(len(merged)))
 
 
-# Removing outliers - anything above 1g/L we'll assume is an outlier,
-# though it may just be bad units and we can scale down by a factor of 1,000
-print("Removing outliners - measurements over 1g/mL")
-overOneThousand = merged.loc[merged.Value > 1000]
-overOneThousand.to_csv(makepath(over1k), index=False, quoting=csv.QUOTE_ALL)
-print("Found {0} outliers".format(len(overOneThousand)))
-del overOneThousand
-
-merged = merged.loc[merged.Value <= 1000]
-print("{0} rows remain".format(len(merged)))
-
-
-# Same for less than zero
-print("Removing negative results...")
-lessThanZero = merged.loc[merged.Value < 0]
-lessThanZero.to_csv(makepath(less_than_zero),
-                    index=False,
-                    quoting=csv.QUOTE_ALL)
-print("Found {0} negative vlaues".format(len(lessThanZero)))
-del lessThanZero
-
-
-merged = merged.loc[merged.Value >= 0]
-print("{0} rows remain.".format(len(merged)))
-
-
 merged['ExceedsMclg'] = merged.Value > merged.MCLG
 
 keepers = merged[['ActivityMediaName',
@@ -167,7 +157,17 @@ keepers = merged[['ActivityMediaName',
                   'Value',
                   'MCLG',
                   'ExceedsMclg',
-                  'ResultCommentText']]
+                  'ResultCommentText',
+                  'OrganizationIdentifier',
+                  'OrganizationFormalName',
+                  'ActivityTypeCode',
+                  'ResultSampleFractionText',
+                  'MeasureQualifierCode',
+                  'ResultStatusIdentifier',
+                  'ResultAnalyticalMethod/MethodIdentifier',
+                  'ResultAnalyticalMethod/MethodName',
+                  'ResultLaboratoryCommentText'
+                  ]]
 
 keepers.columns = ['Medium',
                    'MediumSubdivision',
@@ -181,7 +181,17 @@ keepers.columns = ['Medium',
                    'Value',
                    'Mclg',
                    'ExceedsMclg',
-                   'Comment']
+                   'Comment',
+                   'OrganizationId',
+                   'OrganizationName',
+                   'ActivityTypeCode',
+                   'ResultSampleFraction',
+                   'QualifierCode',
+                   'ResultStatus',
+                   'AnalyticalMethodIdentifier',
+                   'AnalyticalMethodName',
+                   'LaboratoryComment'
+                   ]
 
 print("Saving output")
 keepers.to_csv(makepath(result_clean), index=False, quoting=csv.QUOTE_ALL)

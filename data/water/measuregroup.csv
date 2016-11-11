@@ -54,8 +54,8 @@ Lead,Inorganic,0,0.015,mg/L
 Lindane,Organic,0.0002,.0002 ,mg/L
 Mercury,Inorganic,0.002,0.002,mg/L
 Methoxychlor,Organic,0.04,.04 ,mg/L
-nitrate,Inorganic,10,10,mg/L
-nitrite,Inorganic,1,1,mg/L
+Nitrate,Inorganic,10,10,mg/L
+Nitrite,Inorganic,1,1,mg/L
 o-Dichlorobenzene,Organic,0.6,0.6,mg/L
 Oxamyl,Organic,0.2,0.2,mg/L
 p-Dichlorobenzene,Organic,0.75,0.75,mg/L
@@ -74,4 +74,4 @@ Toxaphene,Organic,0,0.003,mg/L
 Trichloroethylene,Organic,0,0.005,mg/L
 TTHMs,Disinfection Byproducts,NA,0.08,mg/L
 Vinyl chloride,Organic,0,0.002,mg/L
-xylene,Organic,10,10,mg/L
+Xylene,Organic,10,10,mg/L
