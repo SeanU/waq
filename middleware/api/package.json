@@ -1,0 +1,28 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "WAQ - DSE RestAPI App",
+  "main": "index.js",
+  "scripts": {
+    "test": "testapi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:ankittharwani/WAQ.git"
+  },
+  "keywords": [
+    "middleware"
+  ],
+  "author": "Ankit Tharwani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankittharwani/WAQ/issues"
+  },
+  "homepage": "https://github.com/ankittharwani/WAQ#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "body-parser": "1.15.2",
+    "async": "^1.5.2",
+    "cassandra-driver": "3.1.1"
+  }
+}

@@ -1,0 +1,29 @@
+CREATE KEYSPACE waq WITH REPLICATION = {'class':'NetworkTopologyStrategy', 'Solr':1};
+
+create table if not exists water_sites (
+"MonitoringLocationIdentifier" varchar,
+"MonitoringLocationTypeName" varchar,
+"MonitoringLocationName" varchar,
+"CountyCode" float,
+"CountyName" varchar,
+"LatitudeMeasure" decimal,
+"LongitudeMeasure" decimal,
+PRIMARY KEY ("MonitoringLocationIdentifier"));
+
+copy water_sites
+("MonitoringLocationIdentifier",
+"MonitoringLocationTypeName",
+"MonitoringLocationName",
+"CountyCode",
+"CountyName",
+"LatitudeMeasure",
+"LongitudeMeasure") 
+from '/apps/waq/analysis/water/api_data/measurement_site_lookup.dat' 
+WITH DELIMITER = '\t';
+
+dsetool create_core waq.water_sites generateResources=true reindex=true
+
+SELECT * FROM waq.water_sites WHERE solr_query='CountyCode:71.0 AND LatitudeMeasure:[34.65 TO 35.0]' LIMIT 3;
+
+
+SELECT * FROM waq.water_sites WHERE solr_query='LatitudeMeasure:[34.88 TO 34.99] AND LongitudeMeasure:[-117.04 TO -117.03]';
