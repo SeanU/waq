@@ -11,19 +11,12 @@ def makedir(dirpath):
         print('\tcreating ' + dirpath)
         makedirs(dirpath)
 
-def makeWaterDirs(subdir):
-    dirs = [path.join(subdir, ftype) for ftype in water_file_types]
-
-    for d in dirs:
-        makedir(d)
-
 def main(root):
     print('Ensuring directory structure exists at ' + root)
     dirs = [path.join(root, state) for state in state_to_id]
 
     for d in dirs:
         makedir(d)
-        makeWaterDirs(d)
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
