@@ -27,3 +27,35 @@ SELECT * FROM waq.water_sites WHERE solr_query='CountyCode:71.0 AND LatitudeMeas
 
 
 SELECT * FROM waq.water_sites WHERE solr_query='LatitudeMeasure:[34.88 TO 34.99] AND LongitudeMeasure:[-117.04 TO -117.03]';
+
+create table if not exists measurement_data (
+"site_id" varchar,
+"contaminant_type" varchar,
+"measurement_date" date,
+"measurement_time" time,
+"contaminant_cat" varchar,
+"contaminant" varchar,
+"value" decimal,
+"status" varchar,
+"rank" smallint,
+"code" varchar,
+"lat" decimal,
+"lng" decimal,
+PRIMARY KEY ("site_id","contaminant_type","contaminant","measurement_date"));
+
+
+copy measurement_data
+("site_id",
+"contaminant_type",
+"measurement_date",
+"measurement_time",
+"contaminant_cat",
+"contaminant",
+"value",
+"status",
+"rank",
+"code",
+"lat",
+"lng") 
+from '/apps/waq/analysis/water/outcome_20161101/water_temp2/water_loc_rank1.dat' 
+WITH DELIMITER = '\t';

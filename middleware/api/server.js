@@ -12,6 +12,8 @@ const BigDecimal = require('cassandra-driver').types.BigDecimal;
 var app = express();
 var getAirQuality = "SELECT * FROM WAQ.air_quality;";
 const getWaterSites = "SELECT * FROM waq.water_sites WHERE solr_query='LatitudeMeasure:[~SWLat TO ~NELat] AND LongitudeMeasure:[~SWLon TO ~NELon]' limit 10000;"
+const getMeasurementData = "SELECT * FROM waq.measurement_data WHERE solr_query='lat:[~SWLat TO ~NELat] AND lng:[~SWLon TO ~NELon]' limit 10000;"
+const getMeasurements = "SELECT * FROM waq.measurement_data WHERE solr_query='lat:[~SWLat TO ~NELat] AND lng:[~SWLon TO ~NELon] AND contaminant_type:~Type' limit 10000;"
 
 app.use(bodyParser.json());
 app.set('json spaces', 2);
@@ -109,6 +111,41 @@ app.get('/getWaterSites/:SWLat/:SWLon/:NELat/:NELon', function(req, res) {
   client.execute(query, function(err, result) {
     if (err) {
       res.status(404).send({ "error" : 'Could not fetch water monitoring sites' });
+      //console.log(err);
+    } else {
+      res.json(result.rows);        }
+    });
+  });
+
+app.get('/getMeasurementData/:SWLat/:SWLon/:NELat/:NELon', function(req, res) {
+  var SWLat = parseFloat(req.params.SWLat);
+  var SWLon = parseFloat(req.params.SWLon);
+  var NELat = parseFloat(req.params.NELat);
+  var NELon = parseFloat(req.params.NELon);
+  query = getMeasurementData.replace("~SWLat",SWLat).replace("~SWLon",SWLon).replace("~NELat",NELat).replace("~NELon",NELon);
+  //console.log(SWLat,SWLon,NELat,NELon);
+  //console.log(query);
+  client.execute(query, function(err, result) {
+    if (err) {
+      res.status(404).send({ "error" : 'Could not fetch measurement data' });
+      //console.log(err);
+    } else {
+      res.json(result.rows);        }
+    });
+  });
+
+app.get('/getMeasurements/:Type/:SWLat/:SWLon/:NELat/:NELon', function(req, res) {
+  var SWLat = parseFloat(req.params.SWLat);
+  var SWLon = parseFloat(req.params.SWLon);
+  var NELat = parseFloat(req.params.NELat);
+  var NELon = parseFloat(req.params.NELon);
+  console.log(req.params.Type);
+  query = getMeasurements.replace("~SWLat",SWLat).replace("~SWLon",SWLon).replace("~NELat",NELat).replace("~NELon",NELon).replace("~Type",req.params.Type);
+  //console.log(SWLat,SWLon,NELat,NELon);
+  //console.log(query);
+  client.execute(query, function(err, result) {
+    if (err) {
+      res.status(404).send({ "error" : 'Could not fetch measurement data' });
       //console.log(err);
     } else {
       res.json(result.rows);        }

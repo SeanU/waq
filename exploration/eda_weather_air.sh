@@ -51,3 +51,19 @@ SUM(case when parameter='62201' then measurement else 0 END) as RHDP,
 SUM(case when parameter='62101' then measurement else 0 END) as Temp,
 SUM(case when parameter='61103' then measurement else 0 END) as Wind
 from air_weather_hourly group by state_code, county_code, site_num, date_gmt, time_gmt;
+
+cat CA-result-withmeasuregroup.csv | awk -F"," -v OFS='\t' '{if ($2 != "\"Medium\"") print $1,$2,$4,$5,$7,$8,$12,$16}' | sed -e 's/\"//g' > water_cleaned.dat
+
+create external table water_site (site_id string, site_type string, var1 string, var2 string, var3 string, lat double, lng double) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE location '/waq/water_sites/';
+
+create external table water_data (site_id string, type string, measurement_date string, measurement_time string, contaminent_type string, cotaminent string, value double, status string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE location '/waq/water_data/';
+
+
+create table water_data_rank1 location '/waq/water_data_rank1' as select * from (select *,rank() over (partition by site_id,cotaminent order by measurement_date, measurement_time desc) as rnk from water_data) as a where a.rnk=1;
+
+create table water_loc_merged location '/waq/water_loc_merged' as select a.*,b.var1,b.lat,b.lng from water_data_rank1 as a inner join water_site as b on a.site_id=b.site_id ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE;
+
+INSERT OVERWRITE LOCAL DIRECTORY '/apps/waq/analysis/water/outcome_20161101/water_temp2' ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE SELECT * FROM water_loc_merged;
+
+create external table air_data (site_id string, type string, measurement_date string, measurement_time string, contaminent_type string, cotaminent string, value double, status string, rank int, code string, lat double, lng double) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE location '/waq/water_data/';
+
