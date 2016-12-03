@@ -39,13 +39,18 @@
     Last update: 2016/10 
 
                                 
-    Components: jQuery, easyUI.
+    Components: jQuery, easyUI, Google Maps, Google Places.
 
                                 
-    Software: Sublime, Sublime FTP, Google Maps, Goodle Places, Google Cloud Services, Amazon AWS  
+    Software: Sublime, Sublime FTP, Google Cloud Services, Amazon AWS, DataStax
                 Hive, Hadoop, D3, Apache Web Server, Ubuntu GNU/Linux, Git/Github
 
 
-    Icon design: Vectors Market @ flaticon.com
-           
+    Icon design: 
+        Vectors Market @ flaticon.com
+        Dave Gandy @ flaticon.com
+        madebyoliver @ flaticon.com
+        OCHA @ flaticon.com 
+        SimpleIcon @ flaticon.com
+
                 

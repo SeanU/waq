@@ -108,15 +108,6 @@ div.map {
 }
 
 
-.right-box{
-  width: 33%;
-  height:90%;
-  position: absolute;
-  right: 0;
-  top:0;
-  background-color: antiquewhite;
-  z-index: 1;
-}
 
 div.timespan {
   width: 50%;
@@ -157,22 +148,111 @@ div.timespan_label p {
   width:100%;
   height: 10%;
   position: absolute;
-  bottom: 0px;
-  background-color:antiquewhite;
+  bottom: -8%;
+  background:rgba(255,255,255,0.25);
   z-index: 1;
   color: whitesmoke;
 }
 
-
-.toolbox:hover {
- display: block;
+.bottom-box:hover{
+  background:rgba(255,255,255,0.85);
+  bottom:0%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-.toolbox {
-  display:none;
+
+
+.right-box-lock {
+  width: 33%;
+  height:90%;
+  position: absolute;
+  top:0;
+  z-index: 1;
+  background:rgba(255,255,255,0.85);
+  opacity:0.95;
+  right:0%;
+  padding-left: 0%;
+  /*-webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25 ease-in-out;
+  transition: all 0.25s ease-in-out;
+  */
+  transition: all 0.45s cubic-bezier(0.9, 0.39, 0, 0.66);
 }
 
-/*a:hover {
-    box-shadow: 0 0 2px 1px rgba
-    (0, 140, 186, 0.5);
-}*/
+
+.right-box{
+  width: 33%;
+  height:90%;
+  position: absolute;
+  right: -27%;
+  top:0;
+  background:rgba(255,255,255,0.25);
+  background-color:transparent;
+  opacity:0.25;
+  z-index: 1;
+  padding-left:10%;
+}
+
+.right-box:hover {
+  background:rgba(255,255,255,0.85);
+  opacity:0.85;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25 ease-in-out;
+  transition: all 0.25s ease-in-out;
+  }
+
+.tabs-header {
+  background-color: transparent;
+  border-color: rgb(200,200,200);
+  width:100% !important;
+  /*height: 100% !important;*/
+  margin: 0%;
+}
+
+.tabs-panels, .tabs-panels-no-border,  {
+  width: 100% !important;
+  margin: 0%;
+  height:100% !important;
+
+}
+
+.fixed-table-container {
+  height: 88% !important;
+}
+
+.panel{
+  margin-bottom: 0%;
+  width:100% !important;
+  margin: 0%;
+  height:100% !important;
+}
+.panel-body{
+  margin-bottom: 0%;
+  width:100% !important ;
+  height:100% !important;
+}
+
+.bootstrap-table {
+  height:100%;
+}
+
+.logo {
+  width: 41%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: all 0.45s cubic-bezier(0.9, 0.39, 0, 0.66);
+}
+
+.logolock {
+    width: 45%;
+    position: absolute;
+    top: 4px;
+    left: 9px;
+    transition: all 0.45s cubic-bezier(0.9, 0.39, 0, 0.66);
+}

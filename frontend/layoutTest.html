@@ -3,11 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="/js/themes/default/easyui.css">
-        <link rel="stylesheet" type="text/css" href="/js/themes/icon.css">
-        <link rel="stylesheet" type="text/css" href="/js/demo/demo.css">
+        <!-- <link rel="stylesheet" type="text/css" href="/js/themes/icon.css"> -->
+        <!-- <link rel="stylesheet" type="text/css" href="/js/demo/demo.css"> -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap-table.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="css/waqnew.css">
+        <link rel="stylesheet" type="text/css" href="css/waq.css">
 
         <script type="text/javascript" src="/js/jquery.min.js"></script>
         <script type="text/javascript" src="/js/jquery.easyui.min.js"></script>
@@ -28,15 +28,14 @@
     </head>
 
     <body>
-        <div style="padding:10px">
-        <h2>WAQ Dog - Don't quit Dambyote.</h2>
-        </h3>
-        <!-- <div style="margin:20px 0;"></div> -->
-        <div class="easyui-layout" style="width:1200px;height:500px;margin:20px">
+        <div class="main-window">
+        <!-- <div class="easyui-layout"> -->
           
-            <div data-options="region:'south',split:true" style="height:64px;text-align:right;padding-right:10px">
-                <a href=humans.txt><img src="http://humanstxt.org/img/oficial-logos/humanstxt-isolated-blank.gif" alt="Humans.txt Icon" style="height:22px;"></a>
-
+            <div class="bottom-box">
+                <a href=humans.txt>
+                <img src="http://humanstxt.org/img/oficial-logos/humanstxt-isolated-blank.gif" alt="Humans.txt Icon" style="height:22px;">
+                </a>
+            </div>
                 <!-- Add the time span slider -->
                 <div class="timespan_label">
                     <p>Time Span of Interest</p>
@@ -56,13 +55,13 @@
                 </div>
 
 
-            </div>
+        </div>
             
             
 
 
             <!-- <div id="map" data-options="region:'west',split:true,collapsible:true" title="West" style="width:50%;"></div> -->
-            <div id="map" data-options="region:'center',title:'WAQ Dog Cartogram',collapsible:true">
+            <div id="map">
 
             <script>
             //Initialize to get global scope
@@ -482,8 +481,8 @@
 
             </div>
 
-            <div data-options="region:'east',split:true" title="Pollution Levels in This Area" style= "width:30%">
-                <div data-options="region:'north'" style="height:25px">
+            <div class="right-box" style= "width:30%">
+                <div class="searchbox" style="height:25px">
                       <form>
                         <input id="pac-input" class="controls" size=100 type="text" placeholder="Enter Search Location">
                       </form>
