@@ -33,8 +33,8 @@ def generateUrl(state, startDate, endDate):
     
     url = ('http://www.waterqualitydata.us/Station/search?'
            +'countrycode=US'+'&statecode=US%3A' + stateNo
+           +'&sampleMedia=Water&sampleMedia=water'
            +'&startDataLo=' + start
-           +'&startDateHi=' + end
            +'&mimeType=csv&zip=yes&sorted=no')
     
     return url
