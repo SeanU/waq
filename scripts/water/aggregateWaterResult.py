@@ -7,7 +7,7 @@ import pandas as pd
 from common import set_suffix
 
 def aggregate_water_result(input_path):
-    output_path = set_suffix(input_path, 'withmeasuregroup')
+    output_path = set_suffix(input_path, 'aggregated')
 
     data = pd.read_csv(input_path)
     mcls = pd.read_csv('measuregroup.csv',

@@ -3,7 +3,7 @@
 import sys
 import zipfile
 
-from os import path
+from os import path, remove
 
 from common import state_to_id, downloadFile
 from cleanWaterStation import clean_water_station
@@ -24,14 +24,20 @@ def unzip(filepath):
 
 def clean_station_data(root, state):
     filepath = generateFilePath(root, state, 'station')
-    filepath = unzip(filepath)
-    return clean_water_station(filepath)
+    unzipped = unzip(filepath)
+    cleaned = clean_water_station(unzipped)
+    remove(unzipped)
+    return cleaned
+
 
 def clean_result_data(root, state):
     filepath = generateFilePath(root, state, 'result')
-    filepath = unzip(filepath)
-    filepath = clean_water_result(filepath)
-    return aggregate_water_result(filepath)
+    unzipped = unzip(filepath)
+    cleaned = clean_water_result(unzipped)
+    aggregated = aggregate_water_result(cleaned)
+    remove(unzipped)
+    remove(cleaned)
+    return aggregated
 
 def main(root):
     for state in state_to_id:
