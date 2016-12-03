@@ -1,4 +1,4 @@
-State,StateId,CountyId,County,ClassCode
+State,StateCode,CountyCode,CountyName,ClassCode
 AL,01,001,Autauga County,H1
 AL,01,003,Baldwin County,H1
 AL,01,005,Barbour County,H1

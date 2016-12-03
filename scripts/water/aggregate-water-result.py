@@ -1,14 +1,20 @@
 #!/usr/bin/env python
 
 import csv
+import sys
 import pandas as pd
 
-resultpath = '../data/water/CA-result-clean.csv'
-measuregrouppath = '../data/water/measuregroup.csv'
-outputpath = '../data/water/CA-result-withmeasuregroup.csv'
+from common import set_suffix
 
-data = pd.read_csv(resultpath)
-mcls = pd.read_csv(measuregrouppath,
+if len(sys.argv) < 2:
+      print('Usage: clean-water-station.py [root-dir]')
+      exit(-1)
+
+input_path = sys.argv[1]
+output_path = set_suffix(input_path, 'withmeasuregroup')
+
+data = pd.read_csv(input_path)
+mcls = pd.read_csv('measuregroup.csv',
                    usecols=['MeasureGroup', 'Category', 'MCL'])
 mcls.columns = ['Pollutant', 'Category', 'Mcl']
 
@@ -89,5 +95,5 @@ withmcls.ix[(withmcls.ExceedsMclg > 0) & (withmcls.ExceedsMcl is False),
 withmcls.ix[withmcls.ExceedsMcl, 'WarningLevel'] = 'Red'
 
 # Output
-withmcls.to_csv(outputpath, quoting=csv.QUOTE_ALL, index=False)
-print(outputpath)
+withmcls.to_csv(output_path, quoting=csv.QUOTE_ALL, index=False)
+print(output_path)

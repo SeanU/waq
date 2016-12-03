@@ -8,23 +8,14 @@ import datetime as dt
 
 
 # Generating dictionaries for mapping FIPS codes
-fips = pd.read_csv('fips_codes.csv', dtype={'StateId': object, 'CountyId': object})
-state_index = fips[['State', 'StateId']].drop_duplicates()
-state_to_id = state_index.set_index('State').to_dict()['StateId']
-id_to_state = state_index.set_index('StateId').to_dict()['State']
+fips = pd.read_csv('fips_codes.csv', dtype={'StateCode': object, 'CountyCode': object})
+state_index = fips[['State', 'StateCode']].drop_duplicates()
+state_to_id = state_index.set_index('State').to_dict()['StateCode']
+id_to_state = state_index.set_index('StateCode').to_dict()['State']
 del state_index
 
-def get_county_data(state):
-    county = fips.ix[fips.State == state]
-    return county[['County', 'CountyId']].drop_duplicates()
-
-def get_county_to_id(state):
-    county_index = get_county_data(state)
-    return county_index.set_index('County').to_dict()['CountyId']
-
-def get_id_to_county(state):
-    county_index = get_county_data(state)
-    return county_index.set_index('CountyId').to_dict()['County']
+def get_county_map(state):
+    return fips.ix[fips.State == state]
 
 water_file_types = ['station', 'result']
 
@@ -40,3 +31,13 @@ def downloadFile(url, path):
 
     print('{}\t Finished downloading {}'.format(dt.datetime.now(), path))
     return path
+
+def set_suffix(filepath, suf):
+    folder, file = path.split(filepath)
+    name, ext = path.splitext(file)
+    name = str.split(name, sep='-')[0] + '-' + str.split(name, sep='-')[1]
+    return path.join(folder, name + '-' + suf + ext)
+
+def get_state_code(filepath):
+    _, file = path.split(filepath)
+    return file[:2]

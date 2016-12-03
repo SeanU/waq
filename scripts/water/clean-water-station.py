@@ -2,21 +2,19 @@
 
 import csv
 import pandas as pd
+import sys
 
 from os import path
 
+from common import set_suffix, get_county_map, get_state_code
 
-rootdir = '../data/water'
+if len(sys.argv) < 2:
+      print('Usage: clean-water-station.py [root-dir]')
+      exit(-1)
 
-input_file = 'CA-station.csv'
-county_file = 'CA-county-codes.csv'
-
-input_base = path.splitext(input_file)[0]
-
-input_path = path.join(rootdir, input_file)
-county_path = path.join(rootdir, county_file)
-output_path = path.join(rootdir, input_base + "-clean.csv")
-
+input_path = sys.argv[1]
+output_path = set_suffix(input_path, 'clean')
+state_code = get_state_code(input_path)
 
 print("Reading from {}. . .".format(input_path))
 data = pd.read_csv(input_path,
@@ -31,8 +29,7 @@ data.ix[data.LongitudeMeasure > 0, "LongitudeMeasure"] *= -1
 print("{0} locations teleported from China."
       .format(len(data.ix[data.Edits == "Inverted Longitude"])))
 
-print("Reading counties from {}. . .".format(county_path))
-county = pd.read_csv(county_path)
+county = get_county_map(state_code)
 
 merged = pd.merge(data, county, on='CountyCode', how='left')
 
