@@ -16,11 +16,8 @@
         <script type="text/javascript" src="js/js-marker-clusterer/src/markerclusterer.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="js/bootstrap-table.js"></script><!-- Latest compiled and minified CSS -->
-        
-        <!-- Optional theme -->
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
-        <!-- Latest compiled and minified JavaScript -->
-        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+        <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+        <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js?cacheBust=56"></script>
 
         <title>Pollution Sensors</title>
         <meta name="viewport" content="initial-scale=1.0">
@@ -76,8 +73,12 @@
                     if (rightbox.hasClass('right-box-lock')){
                         rightbox.removeClass("right-box-lock");
                         rightbox.addClass('right-box');
+
                         $('.logolock').addClass('logo');
                         $('.logolock').removeClass('logolock');
+
+                        $('.summaryChartLock').addClass('summaryChart');
+                        $('.summaryChartLock').removeClass('summaryChartLock');
                         }
 
                     else{
@@ -85,37 +86,20 @@
                         rightbox.removeClass('right-box')
 
                         $('.logo').addClass('logolock');
-                        $('.logo').removeClass('logo')
+                        $('.logo').removeClass('logo');
 
+                        $('.summaryChart').addClass('summaryChartLock');
+                        $('.summaryChart').removeClass('summaryChart');
                         }
                     
                     });
                 </script>
 
-
-                
-               <!--  <div class="easyui-tabs" border="false">
-                  
-                    <div title="Overview" style="padding:3px;width:100%;height:100%" closable="false" plain="true" border="false">
-                        
-                        <div class=container style="width:100%;"> 
-                            <p>
-                                <img src="http://nwgbusiness.co.uk/content/uploads/2015/10/icon-water.png" alt="Water Quality Icon" style="width:75px;height:75px;display:block;margin-left: auto;margin-right:auto">
-                                Water Quality: Wet
-                            </p>
-                        </div>
-
-                        <div class=container style="width:100%";>
-                            <p>
-                            <img src="http://nwgbusiness.co.uk/content/uploads/2015/10/icon-air.png" alt="Air Quality Icon" style="width:75px;height:75px;display:block;margin-left: auto;margin-right:auto">
-                                Air Quality: Fetored
-                            </p>
-
-                        </div>
-
-
-                    </div>
-                    <div title="Table View" closable="false" style="padding:3px;width:100%;height:100%;" plain="true" border="false"> -->
+                <div id=summaryChart class=summaryChart style="overflow-y: hidden;">
+                    <script type="text/javascript">
+                        makeSummaryChart();
+                    </script>
+                </div>
 
                     <div id=logo class=logo>
                         <img class=logo src="http://lapawspa.com/mt_images/buoyant%2520collar%2520illustration_no%2520collar_with%2520logo.gif" alt="A stolen dog logo">
@@ -131,9 +115,9 @@
 
                                 <thead>
                                     <tr>
-                                    <th data-field = status>Status</th>
+                                    <th data-field = status >Status</th>
                                     <th data-field = contaminant_type>Type</th>
-                                    <th data-field = contaminant sortable="true">Name</th>
+                                    <th data-field = contaminant data-formatter="CardFormatter">Name</th>
                                     <th data-field = measurement_date>Measure Date</th>
                                     <th data-field = contaminant_cat>Category</th>
                                     <th data-field = value>Value</th>
@@ -145,10 +129,6 @@
                                     </tr>
                                 </thead>
                             </table>
-
-                    <!-- </div> -->
-
-                <!-- </div> -->
             </div>
         </div>
 

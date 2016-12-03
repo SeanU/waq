@@ -256,3 +256,23 @@ div.timespan_label p {
     left: 9px;
     transition: all 0.45s cubic-bezier(0.9, 0.39, 0, 0.66);
 }
+
+.summaryChartLock{
+    height: 90%;
+    width: 10%;
+    position: absolute;
+    top: 10%;
+    left: -10%;
+    background-color: beige;
+    transition: all 0.55s cubic-bezier(0.9, 0.39, 0, 0.66);
+    }
+
+  .summaryChart{
+    height: 50%;
+    width: 7%;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    background-color: beige;
+    transition: all 0.55s cubic-bezier(0.9, 0.39, 0, 0.66);
+  }

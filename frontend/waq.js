@@ -1,7 +1,8 @@
 //Initialize to get global scope
 var map;            // A scaled graphical representation of the ground viewed from above
 var emphMarker;     // This is the marker that will be used to highlight a location
-// var jsonData;       // for holding the JSON fetched from the server
+var dataSummary;       // To hold a percentage value of the "goodness" of the current data set
+var dat;
 
 function initMap() {
 
@@ -428,5 +429,60 @@ function populateTable(dat,clearOld=false) {
                 mapTableCrossLink(marker=null,e=e, row=row, $element=$element)
             });                
     });
+    console.log(jsonData);
+    for (ii = 0; ii < jsonData.length; ii++) {
+        console.log(jsonData['Status'][ii]);
+
+    }
+
 }; // end of function populateTable
 
+
+
+
+// This formats the "baseball cards" for the contaminants in the table
+function CardFormatter(value, row, index) {
+  return "<a href='pollutantCards/"+row.contaminant.toLowerCase()+".html' target='_blank'>"+value+"</a>";
+}
+
+
+function makeSummaryChart() {
+    FusionCharts.ready(function(){
+    var fusioncharts = new FusionCharts({
+    type: 'vbullet',
+    renderAt: 'summaryChart',
+    id: 'rev-bullet-2',
+    width: '100%',
+    height: '110%',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "theme": "fint",
+            "lowerLimit": "0",
+            "subCaptionFontSize": "11",
+            "upperLimit": "1",
+            "caption": "",
+            "chartBottomMargin": "25",
+            "chartTopMargin":"25",
+            "chartLeftMargin":"0",
+            "chartRightMargin":"0",
+            "placeTicksInside":"1",
+            "placeValuesInside":"1"
+        },
+        "colorRange": {
+            "color": [{
+                "minValue": "0",
+                "maxValue": "1",
+                "code": "#cccccc",
+                "alpha": "25"
+            }]
+        },
+        "value": "0.3",
+        "target": "0.3"
+    }
+    }
+    );
+    fusioncharts.render();
+    });
+
+} //end summary chart function
