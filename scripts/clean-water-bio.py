@@ -3,11 +3,7 @@ import re
 import pandas as pd
 
 # list of CharacteristicName values we are interested in
-bio_names =  ['Fecal Coliform', 'Enterococcus', 'Escherichia coli', 
-              'Total Coliform']
-
-#list of unit values we are interested in 
-units = ['MPN', 'cfu/100ml', 'MPN/100ml', 'cfu/100ml ']
+bio_names =  ['Fecal Coliform', 'Enterococcus', 'Escherichia coli', 'Total Coliform']
 
 # list of columns we will need
 cols = ['MonitoringLocationIdentifier', 'CharacteristicName',
@@ -23,7 +19,8 @@ with open('./biologicalresult.csv', 'r') as fp:
     # we are interested in, only if the CharacteristicName is in
     # the bio_names list
     data = [[row[c] for c in cols] for row in reader 
-                   if (row['ResultMeasure/MeasureUnitCode'] in units)]
+                if ('mpn' in row['ResultMeasure/MeasureUnitCode'].lower() or 
+                    'cfu' in row['ResultMeasure/MeasureUnitCode'].lower())]
                    
 # pass the data to a dataframe along with the columns
 df = pd.DataFrame(data, columns=cols)
