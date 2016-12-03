@@ -34,7 +34,7 @@ def downloadWaterResultData(root, state):
 
 def main(root):
     for state in state_to_id:
-        subdir = path.join(root, state, 'result')
+        subdir = path.join(root, state)
         downloadWaterResultData(subdir, state)
 
 if __name__ == '__main__':

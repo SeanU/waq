@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import datetime as dt
 import sys
 
 from os import path
@@ -34,7 +33,7 @@ def downloadWaterStationData(root, state):
 
 def main(root):
     for state in state_to_id:
-        subdir = path.join(root, state, 'station')
+        subdir = path.join(root, state)
         downloadWaterStationData(subdir, state)
 
 if __name__ == '__main__':
