@@ -44,7 +44,7 @@ def clean_result_data(root, state):
     remove(cleaned)
 
 def main(root):
-    for state in state_to_id:
+    for state in sorted(state_to_id):
         subdir = path.join(root, state)
         if path.exists(subdir):
             clean_station_data(subdir, state)
