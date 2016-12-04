@@ -3,7 +3,7 @@
 import sys
 import zipfile
 
-from os import path, remove
+from os import path, remove, rename
 
 from common import state_to_id, downloadFile
 from cleanWaterStation import clean_water_station
@@ -25,18 +25,22 @@ def clean_station_data(root, state):
     zippath = generateFilePath(root, state, 'station')
     unzip(zippath)
     unzipped = path.join(root, 'station.csv')
-    cleaned = clean_water_station(unzipped)
-    remove(unzipped)
+    renamed = path.join(root, state + '_station.csv')
+    rename(unzipped, renamed)
+    cleaned = clean_water_station(renamed)
+    remove(renamed)
 
 
 def clean_result_data(root, state):
     zippath = generateFilePath(root, state, 'result')
     unzip(zippath)
     unzipped = path.join(root, 'result.csv')
-    cleaned = clean_water_result(unzipped)
+    renamed = path.join(root, state + '_result.csv')
+    rename(unzipped, renamed)
+    cleaned = clean_water_result(renamed)
     aggregated = aggregate_water_result(cleaned)
-    bio = clean_water_bio(unzipped)
-    remove(unzipped)
+    bio = clean_water_bio(renamed)
+    remove(renamed)
     remove(cleaned)
 
 def main(root):

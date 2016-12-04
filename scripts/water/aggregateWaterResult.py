@@ -9,6 +9,7 @@ from common import set_suffix
 def aggregate_water_result(input_path):
     output_path = set_suffix(input_path, 'chemical')
 
+    print("loading " + input_path)
     data = pd.read_csv(input_path)
     mcls = pd.read_csv('measuregroup.csv',
                     usecols=['MeasureGroup', 'Category', 'MCL'])
@@ -96,6 +97,7 @@ def aggregate_water_result(input_path):
 
 
     # Output
+    print("Saving " + output_path)
     withmcls.to_csv(output_path, quoting=csv.QUOTE_ALL, index=False)
     return output_path
 

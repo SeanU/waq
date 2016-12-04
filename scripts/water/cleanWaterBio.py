@@ -15,6 +15,7 @@ def clean_water_bio(input_path):
             'ActivityStartDate', 'ActivityStartTime/Time',
             'ResultMeasureValue', 'ResultMeasure/MeasureUnitCode']
 
+    print("loading " + input_path)
     # open the file for reading, pass it to the CSV dict reader
     # this will return each row as a dictionary where the keys 
     # are the header row
@@ -93,6 +94,7 @@ def clean_water_bio(input_path):
     df_out = df_out.drop_duplicates()
     df_out.reset_index(inplace=True, drop=True)
     # push to file
+    print("Saving " + output_path)
     df_out.to_csv(output_path)
     return output_path
 
