@@ -11,6 +11,10 @@ from sklearn.metrics import classification_report, classification
 from sklearn.ensemble import RandomForestClassifier
 
 ### read in the data and format some columns
+### IMPORTANT NOTE:
+### this is for reading in a specific csv file;
+### name may need to be changed and location may be specified
+### if used in different context
 data = pd.read_csv('warning_level_data.csv', header = 0)
 data['StartDate'] = pd.to_datetime(data.StartDate)
 data.WarningCode = data.WarningCode.astype(int)
