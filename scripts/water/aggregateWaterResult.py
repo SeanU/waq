@@ -7,7 +7,7 @@ import pandas as pd
 from common import set_suffix
 
 def aggregate_water_result(input_path):
-    output_path = set_suffix(input_path, 'aggregated')
+    output_path = set_suffix(input_path, 'chemical')
 
     data = pd.read_csv(input_path)
     mcls = pd.read_csv('measuregroup.csv',
@@ -69,26 +69,31 @@ def aggregate_water_result(input_path):
     withmcls = pd.merge(rejoined, mcls, on="Pollutant")
     withmcls['ExceedsMcl'] = withmcls.Value > withmcls.Mcl
 
-    withmcls = withmcls[['LocationIdentifier',
-                        'Medium',
-                        'MediumSubdivision',
-                        'StartDate',
-                        'StartTime',
-                        'TimeZone',
-                        'Category',
-                        'Pollutant',
-                        'Unit',
-                        'Mclg',
-                        'Mcl',
-                        'Value',
-                        'ExceedsMclg',
-                        'ExceedsMcl',
-                        'Comment']]
-
-    withmcls.ix[withmcls.ExceedsMclg == 0, 'WarningLevel'] = 'Green'
+    withmcls.ix[withmcls.ExceedsMclg == 0, 'WarningLevel'] = 'green'
     withmcls.ix[(withmcls.ExceedsMclg > 0) & (withmcls.ExceedsMcl is False),
-                'WarningLevel'] = 'Amber'
-    withmcls.ix[withmcls.ExceedsMcl, 'WarningLevel'] = 'Red'
+                'WarningLevel'] = 'amber'
+    withmcls.ix[withmcls.ExceedsMcl, 'WarningLevel'] = 'red'
+
+# Restricting column list for compatiblity with bio data
+    withmcls = withmcls[[
+        'LocationIdentifier',
+        'Medium',
+        # 'MediumSubdivision',  # Unused
+        'StartDate',
+        'StartTime',
+        # 'TimeZone',  # Unused
+        'Category',
+        'Pollutant',
+        'Unit',
+        'Mclg',
+        'Mcl',
+        'Value',
+        'WarningLevel'
+        # 'ExceedsMclg', # Unused
+        # 'ExceedsMcl',  # Unused
+        # 'Comment'     # Unused
+        ]]
+
 
     # Output
     withmcls.to_csv(output_path, quoting=csv.QUOTE_ALL, index=False)

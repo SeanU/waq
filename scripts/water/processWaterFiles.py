@@ -9,6 +9,7 @@ from common import state_to_id, downloadFile
 from cleanWaterStation import clean_water_station
 from cleanWaterResult import clean_water_result
 from aggregateWaterResult import aggregate_water_result
+from cleanWaterBio import clean_water_bio
 
 def generateFilePath(root, state, kind):
     filename = "{}-{}.zip".format(state, kind)
@@ -27,7 +28,6 @@ def clean_station_data(root, state):
     unzipped = unzip(filepath)
     cleaned = clean_water_station(unzipped)
     remove(unzipped)
-    return cleaned
 
 
 def clean_result_data(root, state):
@@ -35,9 +35,9 @@ def clean_result_data(root, state):
     unzipped = unzip(filepath)
     cleaned = clean_water_result(unzipped)
     aggregated = aggregate_water_result(cleaned)
+    bio = clean_water_bio(unzipped)
     remove(unzipped)
     remove(cleaned)
-    return aggregated
 
 def main(root):
     for state in state_to_id:
