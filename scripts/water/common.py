@@ -35,7 +35,7 @@ def downloadFile(url, path):
 def set_suffix(filepath, suf):
     folder, file = path.split(filepath)
     name, ext = path.splitext(file)
-    name = str.split(name, sep='-')[0]
+    name = name.split('-')[0]
     return path.join(folder, name + '-' + suf + ext)
 
 def get_state_code(filepath):
