@@ -116,10 +116,10 @@ def clean_water_result(input_path):
 
     keepers = merged[[
             'ActivityMediaName',
-            'ActivityMediaSubdivisionName',
+            # 'ActivityMediaSubdivisionName',
             'ActivityStartDate',
             'ActivityStartTime/Time',
-            'ActivityStartTime/TimeZoneCode',
+            # 'ActivityStartTime/TimeZoneCode',
             'MonitoringLocationIdentifier',
             'CharacteristicName',
             'MeasureGroup',
@@ -127,24 +127,24 @@ def clean_water_result(input_path):
             'Value',
             'MCLG',
             'ExceedsMclg',
-            'ResultCommentText',
-            'OrganizationIdentifier',
-            'OrganizationFormalName',
-            'ActivityTypeCode',
-            'ResultSampleFractionText',
-            'MeasureQualifierCode',
-            'ResultStatusIdentifier',
-            'ResultAnalyticalMethod/MethodIdentifier',
-            'ResultAnalyticalMethod/MethodName',
-            'ResultLaboratoryCommentText'
+            # 'ResultCommentText',
+            # 'OrganizationIdentifier',
+            # 'OrganizationFormalName',
+            # 'ActivityTypeCode',
+            # 'ResultSampleFractionText',
+            # 'MeasureQualifierCode',
+            # 'ResultStatusIdentifier',
+            # 'ResultAnalyticalMethod/MethodIdentifier',
+            # 'ResultAnalyticalMethod/MethodName',
+            # 'ResultLaboratoryCommentText'
             ]]
 
     keepers.columns = [
         'Medium',
-        'MediumSubdivision',
+        # 'MediumSubdivision',
         'StartDate',
         'StartTime',
-        'TimeZone',
+        # 'TimeZone',
         'LocationIdentifier',
         'Pollutant',
         'PollutantGroup',
@@ -152,16 +152,16 @@ def clean_water_result(input_path):
         'Value',
         'Mclg',
         'ExceedsMclg',
-        'Comment',
-        'OrganizationId',
-        'OrganizationName',
-        'ActivityTypeCode',
-        'ResultSampleFraction',
-        'QualifierCode',
-        'ResultStatus',
-        'AnalyticalMethodIdentifier',
-        'AnalyticalMethodName',
-        'LaboratoryComment'
+        # 'Comment',
+        # 'OrganizationId',
+        # 'OrganizationName',
+        # 'ActivityTypeCode',
+        # 'ResultSampleFraction',
+        # 'QualifierCode',
+        # 'ResultStatus',
+        # 'AnalyticalMethodIdentifier',
+        # 'AnalyticalMethodName',
+        # 'LaboratoryComment'
         ]
 
     print("Saving output")
