@@ -22,8 +22,8 @@ def clean_water_station(input_path):
       print("Inverting positive longitudes. . .")
       data.ix[data.LongitudeMeasure > 0, "Edits"] = "Inverted Longitude"
       data.ix[data.LongitudeMeasure > 0, "LongitudeMeasure"] *= -1
-      print("{0} locations teleported from China."
-            .format(len(data.ix[data.Edits == "Inverted Longitude"])))
+    #   print("{0} locations teleported from China."
+    #         .format(len(data.ix[data.Edits == "Inverted Longitude"])))
 
       county = get_county_map(state_code)
 
