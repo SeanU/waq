@@ -12,27 +12,27 @@ from aggregateWaterResult import aggregate_water_result
 from cleanWaterBio import clean_water_bio
 
 def generateFilePath(root, state, kind):
-    filename = "{}-{}.zip".format(state, kind)
+    filename = "{}_{}.zip".format(state, kind)
     return path.join(root, filename)
 
 def unzip(filepath):
     name, _ = path.splitext(filepath)
     outfolder, _ = path.split(filepath)
-    outpath = name + '.csv'
     with zipfile.ZipFile(filepath, 'r') as zip_ref:
         zip_ref.extractall(outfolder)
-    return outpath
 
 def clean_station_data(root, state):
-    filepath = generateFilePath(root, state, 'station')
-    unzipped = unzip(filepath)
+    zippath = generateFilePath(root, state, 'station')
+    unzip(zippath)
+    unzipped = path.join(root, 'station.csv')
     cleaned = clean_water_station(unzipped)
     remove(unzipped)
 
 
 def clean_result_data(root, state):
-    filepath = generateFilePath(root, state, 'result')
-    unzipped = unzip(filepath)
+    zippath = generateFilePath(root, state, 'result')
+    unzip(zippath)
+    unzipped = path.join(root, 'result.csv')
     cleaned = clean_water_result(unzipped)
     aggregated = aggregate_water_result(cleaned)
     bio = clean_water_bio(unzipped)
