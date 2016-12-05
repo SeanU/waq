@@ -85,6 +85,7 @@ def main(root):
         if path.exists(subdir):
             clean_station_data(subdir, state)
             clean_result_data(subdir, state)
+    merge_data(root)
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
