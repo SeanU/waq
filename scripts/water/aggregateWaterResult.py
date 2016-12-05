@@ -10,8 +10,7 @@ def aggregate_water_result(input_path):
     output_path = set_suffix(input_path, 'chemical')
 
     print("loading " + input_path)
-    data = pd.read_csv(input_path,
-                    low_memory=False)
+    data = pd.read_csv(input_path)
     mcls = pd.read_csv('measuregroup.csv',
                     usecols=['MeasureGroup', 'Category', 'MCL'])
     mcls.columns = ['Pollutant', 'Category', 'Mcl']
