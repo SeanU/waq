@@ -72,12 +72,12 @@ def merge_data(root):
         return pd.concat(dfs)
 
     print("Concatenating stations")
-    merge_station_files(source_path)\
-        .to_csv(path.join(source_path, path.join(root, 'all-station.csv')))
+    merge_station_files(root)\
+        .to_csv(path.join(root, path.join(root, 'all-station.csv')))
 
     print("Concatenating results")
-    merge_rank_result_files(source_path)\
-        .to_csv(path.join(source_path, path.join('all-result.csv')))
+    merge_rank_result_files(root)\
+        .to_csv(path.join(root, path.join('all-result.csv')))
 
 def main(root):
     for state in sorted(state_to_id):
