@@ -60,7 +60,8 @@ def clean_water_result(input_path):
     print("loading " + input_path)
     data = pd.read_csv(input_path,
                     error_bad_lines=False,
-                    usecols=data_columns)
+                    usecols=data_columns,
+                    low_memory=False)
 
     print("loaded {0} rows".format(len(data)))
 
