@@ -17,7 +17,7 @@ def generateUrl(state):
     url = ('http://www.waterqualitydata.us/Station/search?'
            +'countrycode=US'+'&statecode=US%3A' + stateNo
            +'&sampleMedia=Water&sampleMedia=water'
-           +'&startDataLo=01-01-2010'
+           +'&startDateLo=01-01-2010'
            +'&providers=NWIS&providers=STEWARDS&providers=STORET'
            +'&mimeType=csv&zip=yes&sorted=no')
     

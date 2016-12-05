@@ -2,8 +2,10 @@
 
 import sys
 import zipfile
+import re
+import pandas as pd
 
-from os import path, remove, rename
+from os import path, remove, rename, walk
 
 from common import state_to_id, downloadFile
 from cleanWaterStation import clean_water_station
@@ -42,6 +44,40 @@ def clean_result_data(root, state):
     bio = clean_water_bio(renamed)
     remove(renamed)
     remove(cleaned)
+
+def merge_data(root):
+    def enumerate_files(folder, pattern):
+        for dirpath, dirnames, filenames in walk(folder):
+            for f in filenames:
+                if re.match(pattern, f):
+                    print('Enumerating ' + f)
+                    yield path.join(dirpath, f)
+
+    def read_and_rank(path):
+        df = pd.read_csv(path, low_memory=False)
+        df['Date'] = df['StartDate'] + ' ' + df['StartTime']
+        df['Rank'] = df.sort_values('Date')\
+                        .groupby(['LocationIdentifier', 'Pollutant'])\
+                        .cumcount() + 1
+        return df.drop('Date', 1)
+
+    def merge_station_files(folder):
+        dfs = [pd.read_csv(f, low_memory=False) 
+            for f in enumerate_files(folder, r'\w\w_station-.*\.csv')]
+        return pd.concat(dfs)
+
+    def merge_rank_result_files(folder):
+        dfs = [read_and_rank(f) 
+            for f in enumerate_files(folder, r'\w\w_result-.*\.csv')]
+        return pd.concat(dfs)
+
+    print("Concatenating stations")
+    merge_station_files(source_path)\
+        .to_csv(path.join(source_path, path.join(root, 'all-station.csv')))
+
+    print("Concatenating results")
+    merge_rank_result_files(source_path)\
+        .to_csv(path.join(source_path, path.join('all-result.csv')))
 
 def main(root):
     for state in sorted(state_to_id):
