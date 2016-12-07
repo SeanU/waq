@@ -12,12 +12,20 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     scaleControl: true,
-    center: myLatLng
+    center: myLatLng,
+    minZoom:10
     });                
 
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
     //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var im_click_loc = {
+    url: 'images/bluestar.png',
+    // size: new google.maps.Size(16, 16),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(0, 20)
+    };
+
 
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function() {
@@ -89,8 +97,9 @@ function initMap() {
     // map: null,
     map: map,
     setAnimation: google.maps.Animation.DROP,
-    icon: 'http://maps.google.com/mapfiles/kml/pal4/icon48.png',
-    //icon: 'images/ios7-circle-filled.svg',
+    //icon: 'http://maps.google.com/mapfiles/kml/pal4/icon48.png',
+    // icon: 'images/bluestar.png',
+    icon: im_click_loc,
     size:16,
     draggable:true,
     visible:false
@@ -222,27 +231,27 @@ function fetchSites(ne,sw,map, markerCluster) {
 
         var image = 'http://findicons.com/files/icons/1156/fugue/16/water.png';
         var im_green = {
-            url: 'images/green_cloud.png',
-            size: new google.maps.Size(16, 16),
+            url: 'images/greenair.png',
+            // size: new google.maps.Size(16, 16),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0)
             };
 
         var im_orange = {
-            url: 'images/amber-cloud.png',
-            size: new google.maps.Size(16, 16),
+            url: 'images/amberair.png',
+            // size: new google.maps.Size(16, 16),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0)
             };
         
         var im_red = {
-            url: 'images/red-cloud.png',
-            size: new google.maps.Size(16, 16),
+            url: 'images/redair.png',
+            // size: new google.maps.Size(16, 16),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0)
             };
 
-        
+
         // loop through each point returned from the API
         $.each(data,function(datapoint){
 
@@ -254,18 +263,18 @@ function fetchSites(ne,sw,map, markerCluster) {
             //console.log(thisColor);
 
             if (thisColor.substring(0,3)=='Red'){
-                thisIcon = im_red,
+                thisIcon = im_red
                 //thisLabel = "\u2620";
-                thisLabel = "!";
+                // thisLabel = "!";
                 //font-size = 12;
             }
             else if (thisColor=='Green'){
-                thisIcon=im_green,
-                thisLabel='.';
+                thisIcon=im_green
+                // thisLabel='.';
             }
             else if (thisColor=='Orange'){
-                thisIcon=im_amber,
-                thisLabel="*";
+                thisIcon=im_amber
+                // thisLabel="*";
             }
 
             else {
@@ -289,8 +298,8 @@ function fetchSites(ne,sw,map, markerCluster) {
                 map: map,
                 icon: thisIcon,
                 title: thisTitle,
-                size: thisSize,
-                label: thisLabel
+                size: thisSize
+                // label: thisLabel
             });
 
             // Add a marker click listener
@@ -312,6 +321,7 @@ function fetchSites(ne,sw,map, markerCluster) {
             markerCluster.addMarker(thismarker);
         });
         populateTable(data,clearOld=true);
+        makeSummaryChart(data,'Air');
     });
 
     // ########. Fetch water data, process, and add to map
@@ -323,22 +333,22 @@ function fetchSites(ne,sw,map, markerCluster) {
 
         var image = 'http://findicons.com/files/icons/1156/fugue/16/water.png';
         var im_green = {
-            url: 'images/green-water.png',
-            size: new google.maps.Size(16, 16),
+            url: 'images/greenwater.png',
+            // size: new google.maps.Size(16, 16),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0)
             };
 
         var im_amber = {
-            url: 'images/amber-water.png',
-            size: new google.maps.Size(16, 16),
+            url: 'images/amberwater.png',
+            // size: new google.maps.Size(16, 16),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0)
             };
         
         var im_red = {
-            url: 'images/red-water.png',
-            size: new google.maps.Size(16, 16),
+            url: 'images/redwater.png',
+            // size: new google.maps.Size(16, 16),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0)
             };
@@ -355,18 +365,18 @@ function fetchSites(ne,sw,map, markerCluster) {
             //console.log(thisColor);
 
             if (thisColor.substring(0,3)=='Red'){
-                thisIcon = im_red,
+                thisIcon = im_red
                 //thisLabel = "\u2620";
-                thisLabel = "!";
+                // thisLabel = "!";
                 //font-size = 12;
             }
             else if (thisColor=='Green'){
-                thisIcon=im_green,
-                thisLabel='.';
+                thisIcon=im_green
+                // thisLabel='.';
             }
             else if (thisColor=='Amber'){
-                thisIcon=im_amber,
-                thisLabel="*";
+                thisIcon=im_amber
+                // thisLabel="*";
             }
 
             else {
@@ -392,8 +402,8 @@ function fetchSites(ne,sw,map, markerCluster) {
                 map: map,
                 icon: thisIcon,
                 title: thisTitle,
-                size: thisSize,
-                label: thisLabel
+                size: thisSize
+                // label: thisLabel
             });
 
             
@@ -412,7 +422,7 @@ function fetchSites(ne,sw,map, markerCluster) {
             markerCluster.addMarker(thismarker);
         });
         populateTable(data);
-        makeSummaryChart(data) 
+        makeSummaryChart(data,'Water'); 
     });
 
 return sensorMarkers;
@@ -458,20 +468,37 @@ function CardFormatter(value, row, index) {
 }
 
 function resetSummaryChart() {
-    var greenbox = $('#green-prop-box');
-    var yellowbox = $('#amber-prop-box');
-    var redbox = $('#red-prop-box');
+    var greenboxair = $('#green-prop-box-air');
+    var yellowboxair = $('#amber-prop-box-air');
+    var redboxair = $('#red-prop-box-air');
 
-    greenbox[0].style.width = 1+"px";
-    yellowbox[0].style.width = 1+"px";
-    redbox[0].style.width = 1+"px";
+    greenboxair[0].style.width = 1+"px";
+    yellowboxair[0].style.width = 1+"px";
+    redboxair[0].style.width = 1+"px";
+
+    var greenboxwater = $('#green-prop-box-water');
+    var yellowboxwater = $('#amber-prop-box-water');
+    var redboxwater = $('#red-prop-box-water');
+
+    greenboxwater[0].style.width = 1+"px";
+    yellowboxwater[0].style.width = 1+"px";
+    redboxwater[0].style.width = 1+"px";
 }
 
-function makeSummaryChart(data) {
+function makeSummaryChart(data, poltype='Water') {
     console.log('Populating summary chart.');
-    var greenbox = $('#green-prop-box');
-    var yellowbox = $('#amber-prop-box');
-    var redbox = $('#red-prop-box');
+
+    if (poltype=='Air'){
+        var greenbox = $('#green-prop-box-air');
+        var yellowbox = $('#amber-prop-box-air');
+        var redbox = $('#red-prop-box-air');
+    }
+
+    else{
+        var greenbox = $('#green-prop-box-water');
+        var yellowbox = $('#amber-prop-box-water');
+        var redbox = $('#red-prop-box-water');
+    }
 
     var greenCount = 0;
     var yellowCount = 0;
@@ -498,15 +525,24 @@ function makeSummaryChart(data) {
     });
 
     var totalCount = greenCount + yellowCount + redCount;
-    console.log('Total Count: ', totalCount);
-    console.log('Green Count: ' + greenCount);
+    console.log(poltype,' Total Count: ', totalCount);
+    console.log(poltype,' Green Count: ' + greenCount);
     console.log(100*greenCount/totalCount + '%');
 
 
     // Set box widths
-    greenbox[0].style.width = 100* greenCount/totalCount + '%';//'5%'
-    yellowbox[0].style.width = 100*yellowCount/totalCount + '%';//'5%'
-    redbox[0].style.width = 100*redCount/totalCount + '%';//'5%'
+    if (totalCount >= 1){
+        greenbox[0].style.width = 100* greenCount/totalCount + '%';//'5%'
+        yellowbox[0].style.width = 100*yellowCount/totalCount + '%';//'5%'
+        redbox[0].style.width = 100*redCount/totalCount + '%';//'5%'
+    }
+
+    else {
+        // If there are no data, don't show the bars
+        greenbox[0].style.width = '0%';
+        yellowbox[0].style.width = '0%';
+        redbox[0].style.width = '0%';
+    }
 
 
 
