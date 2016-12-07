@@ -15,7 +15,10 @@ id_to_state = state_index.set_index('StateCode').to_dict()['State']
 del state_index
 
 def get_county_map(state):
-    return fips.ix[fips.State == state]
+    map =  fips.ix[fips.State == state][['CountyCode', 'CountyName']]\
+        .set_index('CountyCode')\
+        .to_dict()['CountyName']
+    return map
 
 water_file_types = ['station', 'result']
 
