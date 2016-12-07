@@ -89,7 +89,7 @@ def aggregate_water_result(input_path):
         'Mclg',
         'Mcl',
         'Value',
-        'WarningLevel'
+        'WarningLevel',
         'ExceedsMclg', # Unused
         'ExceedsMcl',  # Unused
         # 'Comment'     # Unused
