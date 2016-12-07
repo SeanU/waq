@@ -124,8 +124,20 @@
 
 			
 
-				<div id="summary-chart-container">
-					<div id="green-prop-box" class="prop-box" data-toggle="tooltip" title="Proportion of in-view measurements with a status of Green (good)"></div><div id="amber-prop-box" class="prop-box"data-toggle="tooltip" title="Proportion of in-view measurements with a status of Amber (borderline)"></div><div id="red-prop-box" class="prop-box" data-toggle="tooltip" title="Proportion of in-view measurements with a status of Red (bad)"></div>
+				<div id="summary-chart-holder">
+					<div id="water-summary-chart-container" class="summary-chart-container">
+						<div id="green-prop-box-water" class="green-prop-box prop-box waterbox" data-toggle="tooltip" title="Proportion of in-view water measurements with a status of Green (good)"></div><div id="amber-prop-box-water" class="amber-prop-box prop-box waterbox" data-toggle="tooltip" title="Proportion of in-view water measurements with a status of Amber (borderline)"></div><div id="red-prop-box-water" class="red-prop-box prop-box waterbox" data-toggle="tooltip" title="Proportion of in-view water measurements with a status of Red (bad)"></div>
+					</div>
+					<div id="air-summary-chart-container" class="summary-chart-container">
+						<div id="green-prop-box-air" class="green-prop-box prop-box airbox" data-toggle="tooltip" title="Proportion of in-view air measurements with a status of Green (good)"></div><div id="amber-prop-box-air" class="amber-prop-box prop-box airbox" data-toggle="tooltip" title="Proportion of in-view air measurements with a status of Amber (borderline)"></div><div id="red-prop-box-air" class="red-prop-box prop-box airbox" data-toggle="tooltip" title="Proportion of in-view water measurements with a status of Red (bad)"></div>
+					</div>
+					<div id="watericoncontainer" class="icon-container">
+						<img src="images/whitewaterdrop.png" alt="White water drop">					
+					</div>
+
+					<div id="airiconcontainer" class="icon-container">
+						<img src="images/whitecloud.png" alt="White cloud icon">
+					</div>
 				</div>
 			</div>
 
@@ -257,8 +269,8 @@
 
 				</section>
 				<!-- Search / End -->
-
-			<div class="table-container">
+			</div>
+		<div class="table-container">
 				<table  id="table" 
 	                data-toggle="table" 
 	                data-toolbar=".toolbar"
@@ -283,8 +295,7 @@
 		                    </tr>
 		            </thead>
 	            </table>
-	        </div> <!-- End table container  -->
-		</div>
+	    </div> <!-- End table container  -->
 	</div> <!-- End main-content container  -->
 
 </div> <!-- End wrapper container  -->
