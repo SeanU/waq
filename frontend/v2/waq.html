@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>WAQ Dog</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/main.css" id="colors">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-table.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<!-- Scripts
+================================================== -->
+
+<!-- <script type="text/javascript" src="scripts/infobox.min.js"></script> -->
+<script type="text/javascript" src="scripts/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="scripts/js-marker-clusterer/src/markerclusterer.js"></script>
+<script type="text/javascript" src="scripts/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="scripts/bootstrap-table.js"></script><!-- Latest compiled and minified CSS -->
+
+</head>
+
+<body class="overflow-hidden">
+
+
+
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+
+	<!-- Header Container
+	================================================== -->
+	<header id="header-container" class="fullwidth">
+		<!-- Header -->
+		<div id="header">
+			<div class="container">
+
+				<!-- Left Side Content -->
+				<div class="left-side">
+
+					<!-- Logo -->
+					<div id="logo">
+						<a href="index.html"><img src="images/logo.png" alt=""></a>
+					</div>
+
+
+					<!-- Mobile Navigation -->
+					<div class="menu-responsive">
+						<i class="fa fa-reorder menu-trigger"></i>
+					</div>
+
+
+					<!-- Main Navigation -->
+					<nav id="navigation" class="style-1">
+						<ul id="responsive">
+
+							<li><a class="current" href="#">Home</a>
+							</li>
+
+							<li><a href="#">Know More</a>
+							</li>
+
+							<li><a href="#">The Team</a>
+							</li>
+
+							<li><a href="#">Contact Us</a>
+							</li>
+
+						</ul>
+					</nav>
+					<div class="clearfix"></div>
+					<!-- Main Navigation / End -->
+
+				</div>
+				<!-- Left Side Content / End -->
+
+				<div class="right-side">
+					<!-- Header Widget -->
+					<div class="header-widget">
+						<a href="login-register.html" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a>
+					</div>
+					<!-- Header Widget / End -->
+				</div>
+				<!-- Right Side Content / End -->
+
+			</div>
+		</div> <!-- Header / End -->
+		
+
+	</header>
+	<div class="clearfix"></div>
+	<!-- Header Container / End -->
+
+
+	<!-- Content
+	================================================== -->
+	<div class="main-content-container">
+
+
+		<!-- Map -->
+		<div id="map-container">
+
+			<div id="map-nav-container">
+			 <!-- Map Navigation -->
+			 <div id="search-bar-container">
+				<input id="pac-input" class="controls" type="text" placeholder="Enter Search Location">
+			</div>
+
+<!-- 		<a href="#" id="geoLocation" title="Your location"></a>
+
+				<ul id="mapnav-buttons" class="top">
+				    <li><a href="#" id="prevpoint" title="Previous point on map">Prev</a></li>
+				    <li><a href="#" id="nextpoint" title="Next point on mp">Next</a></li>
+				</ul> -->
+
+			
+
+				<div id="summary-chart-container">
+					<div id="green-prop-box" class="prop-box" data-toggle="tooltip" title="Proportion of in-view measurements with a status of Green (good)"></div><div id="amber-prop-box" class="prop-box"data-toggle="tooltip" title="Proportion of in-view measurements with a status of Amber (borderline)"></div><div id="red-prop-box" class="prop-box" data-toggle="tooltip" title="Proportion of in-view measurements with a status of Red (bad)"></div>
+				</div>
+			</div>
+
+
+			<div id="map">
+				<script src=scripts/waq.js></script>
+	        	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATqp-SH3dfKTkATjFfw1MuYeEzs_JeO9E&callback&libraries=places&callback=initMap" async defer></script>
+		    </div>  
+		</div>
+
+		<div id="tools-container">
+			<div id="filter-container">
+				<!-- Search -->
+	 			<section class="search margin-bottom-30" style= "margin: 3px !important;position: relative";>
+
+					<div class="row">
+						<div class="col-md-12">
+
+
+							<!-- Title -->
+							<h4 class="search-title">Filter Preferences</h4>
+							<!-- Form -->
+							<div class="main-search-box no-shadow">
+								
+								<!-- More Search Options -->
+								<a href="#" class="more-search-options-trigger margin-top-20" data-open-title="More Options" data-close-title="Less Options"></a>
+
+								<div class="more-search-options relative">
+									<div class="more-search-options-container margin-top-30">
+
+										<!-- Row With Forms -->
+										<div class="row with-forms">
+
+											<!-- Age of Home -->
+											<div class="col-fs-3">
+												<select data-placeholder="Age of Home" class="chosen-select-no-single" >
+													<option label="blank"></option>
+													<option>Age of Home (Any)</option>
+													<option>0 - 1 Years</option>
+													<option>0 - 5 Years</option>
+													<option>0 - 10 Years</option>
+													<option>0 - 20 Years</option>
+													<option>0 - 50 Years</option>
+													<option>50 + Years</option>
+												</select>
+											</div>
+
+											<!-- Rooms Area -->
+											<div class="col-fs-3">
+												<select data-placeholder="Rooms" class="chosen-select-no-single" >
+													<option label="blank"></option>
+													<option>Rooms (Any)</option>
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+												</select>
+											</div>
+
+											<!-- Min Area -->
+											<div class="col-fs-3">
+												<select data-placeholder="Beds" class="chosen-select-no-single" >
+													<option label="blank"></option>
+													<option>Beds (Any)</option>
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+												</select>
+											</div>
+
+											<!-- Max Area -->
+											<div class="col-fs-3">
+												<select data-placeholder="Baths" class="chosen-select-no-single" >
+													<option label="blank"></option>
+													<option>Baths (Any)</option>
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+												</select>
+											</div>
+
+										</div>
+										<!-- Row With Forms / End -->
+
+
+										<!-- Checkboxes -->
+										<div class="checkboxes in-row">
+
+											<input id="check-2" type="checkbox" name="check">
+											<label for="check-2">Air Conditioning</label>
+
+											<input id="check-3" type="checkbox" name="check">
+											<label for="check-3">Swimming Pool</label>
+
+											<input id="check-4" type="checkbox" name="check" >
+											<label for="check-4">Central Heating</label>
+
+											<input id="check-5" type="checkbox" name="check">
+											<label for="check-5">Laundry Room</label>
+
+
+											<input id="check-6" type="checkbox" name="check">
+											<label for="check-6">Gym</label>
+
+											<input id="check-7" type="checkbox" name="check">
+											<label for="check-7">Alarm</label>
+
+											<input id="check-8" type="checkbox" name="check">
+											<label for="check-8">Window Covering</label>
+
+										</div>
+										<!-- Checkboxes / End -->
+
+									</div>
+
+								</div>
+								<!-- More Search Options / End -->
+
+
+							</div>
+							<!-- Box / End -->
+						</div>
+					</div>
+
+				</section>
+				<!-- Search / End -->
+
+			<div class="table-container">
+				<table  id="table" 
+	                data-toggle="table" 
+	                data-toolbar=".toolbar"
+	                data-search="true"
+	                data-show-refresh="true"
+	                data-show-columns="false"
+	                data-pagination="false">
+
+		            <thead>
+		                <tr>
+		                <th data-field = status >Status</th>
+		                <th data-field = contaminant_type>Type</th>
+		                <th data-field = contaminant data-formatter="CardFormatter">Name</th>
+		                <th data-field = measurement_date>Measure Date</th>
+		                <th data-field = contaminant_cat>Category</th>
+		                <th data-field = value>Value</th>
+		                <th data-field = site_id> Site ID</th>
+		                <th data-field = code>Code</th>
+		                <th data-field = lat>Lat</th>
+		                <th data-field = lng>Lng</th>
+
+		                    </tr>
+		            </thead>
+	            </table>
+	        </div> <!-- End table container  -->
+		</div>
+	</div> <!-- End main-content container  -->
+
+</div> <!-- End wrapper container  -->
+
+
+
+<!-- <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script
+>
+<script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js?cacheBust=56"></script> -->
+
+<!-- <script type="text/javascript" src="scripts/infobox.min.js"></script> -->
+<!-- script type="text/javascript" src="scripts/chosen.min.js"></script>
+
+<script type="text/javascript" src="scripts/magnific-popup.min.js"></script>
+<script type="text/javascript" src="scripts/owl.carousel.min.js"></script>
+<script type="text/javascript" src="scripts/rangeSlider.js"></script>
+<script type="text/javascript" src="scripts/sticky-kit.min.js"></script>
+<script type="text/javascript" src="scripts/slick.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.jpanelmenu.js"></script>
+<script type="text/javascript" src="scripts/masonry.min.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+ -->
+</div>
+<!-- Wrapper / End -->
+
+
+</body>
+</html>

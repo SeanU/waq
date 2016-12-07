@@ -15,7 +15,10 @@ id_to_state = state_index.set_index('StateCode').to_dict()['State']
 del state_index
 
 def get_county_map(state):
-    return fips.ix[fips.State == state]
+    map =  fips.ix[fips.State == state][['CountyCode', 'CountyName']]\
+        .set_index('CountyCode')\
+        .to_dict()['CountyName']
+    return map
 
 water_file_types = ['station', 'result']
 
@@ -35,7 +38,7 @@ def downloadFile(url, path):
 def set_suffix(filepath, suf):
     folder, file = path.split(filepath)
     name, ext = path.splitext(file)
-    name = str.split(name, sep='-')[0] + '-' + str.split(name, sep='-')[1]
+    name = name.split('-')[0]
     return path.join(folder, name + '-' + suf + ext)
 
 def get_state_code(filepath):

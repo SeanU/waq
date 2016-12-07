@@ -57,6 +57,7 @@ def clean_water_result(input_path):
     measures = pd.read_csv(measure_to_measure_group)
 
 
+    print("loading " + input_path)
     data = pd.read_csv(input_path,
                     error_bad_lines=False,
                     usecols=data_columns)
@@ -116,10 +117,10 @@ def clean_water_result(input_path):
 
     keepers = merged[[
             'ActivityMediaName',
-            'ActivityMediaSubdivisionName',
+            # 'ActivityMediaSubdivisionName',
             'ActivityStartDate',
             'ActivityStartTime/Time',
-            'ActivityStartTime/TimeZoneCode',
+            # 'ActivityStartTime/TimeZoneCode',
             'MonitoringLocationIdentifier',
             'CharacteristicName',
             'MeasureGroup',
@@ -127,24 +128,24 @@ def clean_water_result(input_path):
             'Value',
             'MCLG',
             'ExceedsMclg',
-            'ResultCommentText',
-            'OrganizationIdentifier',
-            'OrganizationFormalName',
-            'ActivityTypeCode',
-            'ResultSampleFractionText',
-            'MeasureQualifierCode',
-            'ResultStatusIdentifier',
-            'ResultAnalyticalMethod/MethodIdentifier',
-            'ResultAnalyticalMethod/MethodName',
-            'ResultLaboratoryCommentText'
+            # 'ResultCommentText',
+            # 'OrganizationIdentifier',
+            # 'OrganizationFormalName',
+            # 'ActivityTypeCode',
+            # 'ResultSampleFractionText',
+            # 'MeasureQualifierCode',
+            # 'ResultStatusIdentifier',
+            # 'ResultAnalyticalMethod/MethodIdentifier',
+            # 'ResultAnalyticalMethod/MethodName',
+            # 'ResultLaboratoryCommentText'
             ]]
 
     keepers.columns = [
         'Medium',
-        'MediumSubdivision',
+        # 'MediumSubdivision',
         'StartDate',
         'StartTime',
-        'TimeZone',
+        # 'TimeZone',
         'LocationIdentifier',
         'Pollutant',
         'PollutantGroup',
@@ -152,19 +153,19 @@ def clean_water_result(input_path):
         'Value',
         'Mclg',
         'ExceedsMclg',
-        'Comment',
-        'OrganizationId',
-        'OrganizationName',
-        'ActivityTypeCode',
-        'ResultSampleFraction',
-        'QualifierCode',
-        'ResultStatus',
-        'AnalyticalMethodIdentifier',
-        'AnalyticalMethodName',
-        'LaboratoryComment'
+        # 'Comment',
+        # 'OrganizationId',
+        # 'OrganizationName',
+        # 'ActivityTypeCode',
+        # 'ResultSampleFraction',
+        # 'QualifierCode',
+        # 'ResultStatus',
+        # 'AnalyticalMethodIdentifier',
+        # 'AnalyticalMethodName',
+        # 'LaboratoryComment'
         ]
 
-    print("Saving output")
+    print("Saving " + output_path)
     keepers.to_csv(output_path, index=False, quoting=csv.QUOTE_ALL)
     return output_path
 

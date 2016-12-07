@@ -6,57 +6,57 @@ import sys
 
 from os import path
 
-from common import set_suffix, get_county_map, get_state_code
+from common import set_suffix, get_county_map, get_state_code, id_to_state
 
 def clean_water_station(input_path):
-      output_path = set_suffix(input_path, 'clean')
-      state_code = get_state_code(input_path)
+    output_path = set_suffix(input_path, 'clean')
+    state_code = get_state_code(input_path)
 
-      print("Reading from {}. . .".format(input_path))
-      data = pd.read_csv(input_path,
-                        dtype={"HUCEightDigitCode": object},
-                        low_memory=False)
-      print("Read {0} rows".format(len(data)))
+    print("Reading from {}. . .".format(input_path))
+    data = pd.read_csv(input_path,
+                    dtype={"HUCEightDigitCode": object, "StateCode" :object, "CountyCode" : object},
+                    low_memory=False)
+    print("Read {0} rows".format(len(data)))
 
-      # Some stations have an incorrect sign on the longitude
-      print("Inverting positive longitudes. . .")
-      data.ix[data.LongitudeMeasure > 0, "Edits"] = "Inverted Longitude"
-      data.ix[data.LongitudeMeasure > 0, "LongitudeMeasure"] *= -1
-      print("{0} locations teleported from China."
-            .format(len(data.ix[data.Edits == "Inverted Longitude"])))
+    # Some stations have an incorrect sign on the longitude
+    print("Inverting positive longitudes. . .")
+    data.ix[data.LongitudeMeasure > 0, "Edits"] = "Inverted Longitude"
+    data.ix[data.LongitudeMeasure > 0, "LongitudeMeasure"] *= -1
+#   print("{0} locations teleported from China."
+#         .format(len(data.ix[data.Edits == "Inverted Longitude"])))
 
-      county = get_county_map(state_code)
+    data["State"] = data.StateCode.map(id_to_state)
+    county = get_county_map(state_code)
+    data["CountyName"] = data.CountyCode.map(county)
 
-      merged = pd.merge(data, county, on='CountyCode', how='left')
+    noCounty = data.ix[pd.isnull(data.CountyName)]
+    print("{} stations have no county".format(len(noCounty)))
 
-      noCounty = merged.ix[pd.isnull(merged.CountyName)]
-      print("{} stations have no county".format(len(noCounty)))
+    data = data[['OrganizationFormalName',
+                    'MonitoringLocationIdentifier',
+                    'MonitoringLocationName',
+                    'MonitoringLocationTypeName',
+                    'MonitoringLocationDescriptionText',
+                    'HUCEightDigitCode',
+                    'DrainageAreaMeasure/MeasureValue',
+                    'DrainageAreaMeasure/MeasureUnitCode',
+                    'ContributingDrainageAreaMeasure/MeasureValue',
+                    'ContributingDrainageAreaMeasure/MeasureUnitCode',
+                    'LatitudeMeasure',
+                    'LongitudeMeasure',
+                    'VerticalMeasure/MeasureValue',
+                    'VerticalMeasure/MeasureUnitCode',
+                    'StateCode',
+                    'State',
+                    'CountyCode',
+                    'CountyName',
+                    'AquiferName',
+                    'FormationTypeText',
+                    'AquiferTypeName',
+                    'ProviderName',
+                    'Edits']]
 
-
-      merged = merged[['OrganizationFormalName',
-                  'MonitoringLocationIdentifier',
-                  'MonitoringLocationName',
-                  'MonitoringLocationTypeName',
-                  'MonitoringLocationDescriptionText',
-                  'HUCEightDigitCode',
-                  'DrainageAreaMeasure/MeasureValue',
-                  'DrainageAreaMeasure/MeasureUnitCode',
-                  'ContributingDrainageAreaMeasure/MeasureValue',
-                  'ContributingDrainageAreaMeasure/MeasureUnitCode',
-                  'LatitudeMeasure',
-                  'LongitudeMeasure',
-                  'VerticalMeasure/MeasureValue',
-                  'VerticalMeasure/MeasureUnitCode',
-                  'StateCode_x',
-                  'CountyCode',
-                  'CountyName',
-                  'AquiferName',
-                  'FormationTypeText',
-                  'AquiferTypeName',
-                  'ProviderName',
-                  'Edits']]
-
-      merged.columns = ['Organization',
+    data.columns = ['Organization',
                         'MonitoringLocationId',
                         'MonitoringLocationName',
                         'MonitoringLocationType',
@@ -71,6 +71,7 @@ def clean_water_station(input_path):
                         'VerticalMeasure',
                         'VerticalMeasureUnit',
                         'StateCode',
+                        'State',
                         'CountyCode',
                         'CountyName',
                         'AquiferName',
@@ -79,9 +80,9 @@ def clean_water_station(input_path):
                         'Provider',
                         'Edits']
 
-      print("Saving data to {}. . .".format(output_path))
-      merged.to_csv(output_path, index=False, quoting = csv.QUOTE_ALL)
-      return output_path
+    print("Saving data to {}. . .".format(output_path))
+    data.to_csv(output_path, index=False, quoting = csv.QUOTE_ALL)
+    return output_path
 
 if(__name__ == '__main__'):
     if len(sys.argv) < 2:
