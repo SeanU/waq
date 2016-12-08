@@ -1,4 +1,12 @@
 import dill
+#import the other packages required for the models
+import datetime as dt
+import numpy as np
+import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.cross_validation import train_test_split
+from sklearn.metrics import classification_report, classification
+from sklearn.ensemble import RandomForestClassifier
 
 class MetaModel(object):
 
@@ -21,7 +29,7 @@ class MetaModel(object):
         return '<AllModels object at 0x{:x} with {} models>{}'.format(
             id(self), len(self._models), model_list_string)
 
-    def estimated_pollution(self, latitude, longitude, timedelta=0, pollutants=None):
+    def estimated_pollution(self, latitude, longitude, timedelta=0):
         ### estimate the Warning Code for each pollutant
         model_predictions = []
         for pollutant in self._models:
@@ -37,11 +45,8 @@ class MetaModel(object):
 
             model_predictions.append([pollutant, acc, latitude, longitude, timedelta, level_pred])
         
-        #instead of the print and return functions here
-        #you should probably save the results in a df, array, csv etc to pass to the API
-        #each model output needs to include [lat, long, date, pollutant, status, accuracy]
-        #the entire output should be one file, array, etc
-        print ('With ', "%0.2f" % (acc * 100 ), " probability, the warning level in your zone is: ", warning_level)
+        #this return function returns a list of list
+        #we may want to save the results in a df, csv etc to pass to the API
         return model_predictions
 
 # create meta_model object and load in the model dictionary
@@ -54,3 +59,6 @@ with open('/path/to/file.pickle', 'wb') as fp:
 # unpickle the model
 with open('/path/to/file.pickle', 'rb') as fp:
     meta_model = dill.load(fp)
+
+#to call the pickled models and get predictions out 
+model_estimates = meta_model.estimated_pollution(input_lat, input_long)
