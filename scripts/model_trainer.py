@@ -106,33 +106,28 @@ def find_best_model(df, contaminant, verbose=False):
         kNN_scores.append((p, kNN.score(X=test_data[['lat', 'lng', 'time_delta']],
                                   y=test_data.status_numeric)))
 
-        RF.fit(X=train_data[['lat', 'lng', 'time_delta']].astype(int),
+        RF.fit(X=train_data[['lat', 'lng', 'time_delta']],
                y=train_data.status_numeric)
-        RF_scores.append((p, RF.score(X=test_data[['lat', 'lng', 'time_delta']].astype(int),
+        RF_scores.append((p, RF.score(X=test_data[['lat', 'lng', 'time_delta']],
                                         y=test_data.status_numeric)))
 
     # find the most accurate model and parameter
     if max(kNN_scores, key = lambda x: x[1])[1] > max(RF_scores, key = lambda x: x[1])[1]:
-        return contaminant, "KNN", max(kNN_scores, key = lambda x: x[1])
+        return contaminant, "kNN", max(kNN_scores, key = lambda x: x[1])
     else:
         return contaminant, "RF", max(RF_scores, key = lambda x: x[1])
 
 
 def create_model_dict(df, verbose=False):
     model_dict = {}
+    model_type_dict = {'kNN': KNeighborsClassifier, 'RF': RandomForestClassifier}
     for c in df.contaminant.unique():
         contaminant, model_type, (param, acc) = find_best_model(df, c)
         full_train= df[df.contaminant==c]
-        if model_type == 'kNN':
-            model = KNeighborsClassifier(param)
-            model.fit(X = full_train[['lat', 'lng', 'time_delta']], y = full_train.status_numeric)
-        elif model_type == 'RF':
-            model = RandomForestClassifier(param)
-            model.fit(X = full_train[['lat', 'lng', 'time_delta']].astype(int), y = full_train.status_numeric)
+        model = model_type_dict[model_type](param)
+        model.fit(X = full_train[['lat', 'lng', 'time_delta']], y = full_train.status_numeric)
         model_dict[contaminant] = {'model': model, 'accuracy':acc}
     return model_dict
-
-
 
 class MetaModel(object):
 
@@ -159,7 +154,7 @@ class MetaModel(object):
         ### estimate the Warning Code for each contaminant
         model_predictions = [['contaminant','status','accuracy','lat','lng','time_delta']]
         for contaminant in self._models:
-            level_pred = _models[contaminant].predict([[latitude, longitude, timedelta]])
+            level_pred = self._models[contaminant].predict([[latitude, longitude, timedelta]])
             acc = self._accuracies[contaminant]
 
             if level_pred == 0:
