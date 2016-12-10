@@ -152,6 +152,15 @@ app.get('/getMeasurements/:Type/:SWLat/:SWLon/:NELat/:NELon', function(req, res)
     });
   });
 
+app.get('/getStateCounts/', function(req, res) {
+  console.log("getStateCounts");
+  console.log(req.query.type);
+  console.log(req.query.state);
+  var response = [];
+  response[0] = {};
+  response[0]['name'] = "Ankit";
+  res.json(response);
+});
 
 var server = app.listen(8080, function() {
   console.log('Listening on port %d', server.address().port);
