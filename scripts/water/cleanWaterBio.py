@@ -96,7 +96,7 @@ def clean_water_bio(input_path):
     df_out.reset_index(inplace=True, drop=True)
     # push to file
     print("Saving " + output_path)
-    df_out.to_csv(output_path)
+    df_out.to_csv(output_path, index = False)
     return output_path
 
 if(__name__ == '__main__'):
