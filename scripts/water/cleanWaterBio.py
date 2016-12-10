@@ -92,6 +92,7 @@ def clean_water_bio(input_path):
     # also drop the duplicate measurements.  this is where a breakdown
     # of a sub-measurement is in a column we already dropped.
     df_out = df_out.drop_duplicates()
+    df_out = df_out[pd.notnull(df_out.WarningLevel)]
     df_out.reset_index(inplace=True, drop=True)
     # push to file
     print("Saving " + output_path)

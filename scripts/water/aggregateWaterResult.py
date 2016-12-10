@@ -71,7 +71,7 @@ def aggregate_water_result(input_path):
     withmcls['ExceedsMcl'] = withmcls.Value > withmcls.Mcl
 
     withmcls.ix[withmcls.ExceedsMclg == 0, 'WarningLevel'] = 'green'
-    withmcls.ix[(withmcls.ExceedsMclg > 0) & (withmcls.ExceedsMcl is False),
+    withmcls.ix[(withmcls.ExceedsMclg > 0) & (withmcls.ExceedsMcl == False),
                 'WarningLevel'] = 'amber'
     withmcls.ix[withmcls.ExceedsMcl, 'WarningLevel'] = 'red'
 
