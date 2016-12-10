@@ -7,7 +7,7 @@ import pandas as pd
 
 from os import path, remove, rename, walk
 
-from common import state_to_id, downloadFile
+from common import state_to_id, downloadFile, states
 from cleanWaterStation import clean_water_station
 from cleanWaterResult import clean_water_result
 from aggregateWaterResult import aggregate_water_result
@@ -72,12 +72,38 @@ def merge_data(root):
         return pd.concat(dfs)
 
     print("Concatenating stations")
-    merge_station_files(root)\
-        .to_csv(path.join(root, path.join(root, 'all-station.csv')))
+    station = merge_station_files(root)
+    station.to_csv(path.join(root, path.join(root, 'all-station.csv')))
 
     print("Concatenating results")
-    merge_rank_result_files(root)\
-        .to_csv(path.join(root, path.join('all-result.csv')))
+    result = merge_rank_result_files(root)
+    result.to_csv(path.join(root, path.join('all-result.csv')))
+
+    print("Generating joined results")
+
+    joined = pd.merge(result, station, 
+                        left_on='LocationIdentifier', 
+                        right_on='MonitoringLocationId')
+
+    output = pd.DataFrame()
+    output['site_id'] = joined.LocationIdentifier
+    output['site_name'] = joined.MonitoringLocationName
+    output['state_id'] = joined.StateCode
+    output['state_name'] = joined.State.map(states)
+    output['contaminant_type'] = joined.Medium
+    output['measurement_date'] = joined.StartDate
+    output['measurement_time'] = joined.StartTime
+    output['contaminant_cat'] = joined.Category
+    output['contaminant'] = joined.Pollutant
+    output['value'] = joined.Value
+    output['status'] = joined.WarningLevel
+    output['rank'] = joined.Rank
+    output['code'] = joined.index + 1
+    output['lat'] = joined.Latitude
+    output['lng'] = joined.Longitude
+
+    output.to_csv('water-data.csv', index=False)
+
 
 def main(root):
     for state in sorted(state_to_id):
