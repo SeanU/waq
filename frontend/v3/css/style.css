@@ -10022,12 +10022,7 @@ div.layout-style {
     overflow:scroll;
 }
 
-.main-content-container {
-    position: absolute;
-    height: 90%;
-    width: 100%;
-    top: 10%;
-}
+
 
 #map-container {
     position: relative;
@@ -10171,5 +10166,40 @@ div.layout-style {
     bottom:112%;
     left:3px;
 }
+
+.supplements {
+    width:50%;
+    position:relative;
+    left:25%;
+}
+
+.main-content-container.hidden {
+    display:none;
+}
+
+
+.main-content-container {
+    display:block;
+    position: absolute;
+    height: 90%;
+    width: 100%;
+    top: 10%;
+
+}
+
+#knowmorepane{
+    width:50%;
+    position:relative;
+    left:25%;
+
+}
+
+#contactuspane{
+    width:50%;
+    position:relative;
+    left:25%;
+
+}
+
 
 

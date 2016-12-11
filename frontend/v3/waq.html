@@ -58,21 +58,18 @@
 						<i class="fa fa-reorder menu-trigger"></i>
 					</div>
 
-
+	
 					<!-- Main Navigation -->
 					<nav id="navigation" class="style-1">
 						<ul id="responsive">
 
-							<li><a class="current" href="#">Home</a>
+							<li id="HomeButton" class="navpanebutton current"><a href="#">Home</a>
 							</li>
 
-							<li><a href="#">Know More</a>
+							<li id="KnowMoreButton" class="navpanebutton"><a href="#">Know More</a>
 							</li>
 
-							<li><a href="#">The Team</a>
-							</li>
-
-							<li><a href="#">Contact Us</a>
+							<li id="ContactUsButton" class="navpanebutton"><a href="#">Contact Us</a>
 							</li>
 
 						</ul>
@@ -103,7 +100,7 @@
 
 	<!-- Content
 	================================================== -->
-	<div class="main-content-container">
+	<div id="homepane" class="main-content-container">
 
 
 		<!-- Map -->
@@ -114,13 +111,6 @@
 			 <div id="search-bar-container">
 				<input id="pac-input" class="controls" type="text" placeholder="Enter Search Location">
 			</div>
-
-<!-- 		<a href="#" id="geoLocation" title="Your location"></a>
-
-				<ul id="mapnav-buttons" class="top">
-				    <li><a href="#" id="prevpoint" title="Previous point on map">Prev</a></li>
-				    <li><a href="#" id="nextpoint" title="Next point on mp">Next</a></li>
-				</ul> -->
 
 			
 
@@ -173,54 +163,46 @@
 
 											<!-- Age of Home -->
 											<div class="col-fs-3">
-												<select data-placeholder="Age of Home" class="chosen-select-no-single" >
+												<select data-placeholder="Pollutant" class="chosen-select-no-single" >
 													<option label="blank"></option>
-													<option>Age of Home (Any)</option>
-													<option>0 - 1 Years</option>
-													<option>0 - 5 Years</option>
-													<option>0 - 10 Years</option>
-													<option>0 - 20 Years</option>
-													<option>0 - 50 Years</option>
-													<option>50 + Years</option>
-												</select>
-											</div>
-
-											<!-- Rooms Area -->
-											<div class="col-fs-3">
-												<select data-placeholder="Rooms" class="chosen-select-no-single" >
-													<option label="blank"></option>
-													<option>Rooms (Any)</option>
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-
-											<!-- Min Area -->
-											<div class="col-fs-3">
-												<select data-placeholder="Beds" class="chosen-select-no-single" >
-													<option label="blank"></option>
-													<option>Beds (Any)</option>
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
+													<option> Antimony </option>
+													<option> Arsenic </option>
+													<option> Barium </option>
+													<option> Beryllium </option>
+													<option> Cadmium </option>
+													<option> Chromium </option>
+													<option> Carbon Monoxide </option>
+													<option> Copper </option>
+													<option> E. Coli </option>
+													<option> Enterococcus </option>
+													<option> Fecal Coliform </option>
+													<option> Fluoride </option>
+													<option> HAA5 </option>
+													<option> Lead </option>
+													<option> Mercury </option>
+													<option> Nitrate </option>
+													<option> Nitrite </option>
+													<option> NO2 </option>
+													<option> Ozone </option>
+													<option> Particulates </option>
+													<option> PCBs </option>
+													<option> Selenium </option>
+													<option> Simazine </option>
+													<option> SO2 </option>
+													<option> Total Coliform </option>
+													<option> TTHMs </option>
+													<option> Xylene </option>
 												</select>
 											</div>
 
 											<!-- Max Area -->
 											<div class="col-fs-3">
-												<select data-placeholder="Baths" class="chosen-select-no-single" >
+												<select data-placeholder="Status" class="chosen-select-no-single" >
 													<option label="blank"></option>
-													<option>Baths (Any)</option>
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
+													<option>Status (Any)</option>
+													<option>Red</option>
+													<option>Amber</option>
+													<option>Green</option>
 												</select>
 											</div>
 
@@ -231,27 +213,12 @@
 										<!-- Checkboxes -->
 										<div class="checkboxes in-row">
 
-											<input id="check-2" type="checkbox" name="check">
-											<label for="check-2">Air Conditioning</label>
+											<input id="check-2" type="checkbox" name="check" checked>
+											<label for="check-2">Air Pollutants</label>
 
-											<input id="check-3" type="checkbox" name="check">
-											<label for="check-3">Swimming Pool</label>
+											<input id="check-3" type="checkbox" name="check" checked>
+											<label for="check-3">Water Pollutants</label>
 
-											<input id="check-4" type="checkbox" name="check" >
-											<label for="check-4">Central Heating</label>
-
-											<input id="check-5" type="checkbox" name="check">
-											<label for="check-5">Laundry Room</label>
-
-
-											<input id="check-6" type="checkbox" name="check">
-											<label for="check-6">Gym</label>
-
-											<input id="check-7" type="checkbox" name="check">
-											<label for="check-7">Alarm</label>
-
-											<input id="check-8" type="checkbox" name="check">
-											<label for="check-8">Window Covering</label>
 
 										</div>
 										<!-- Checkboxes / End -->
@@ -299,16 +266,55 @@
 	    </div> <!-- End table container  -->
 	</div> <!-- End main-content container  -->
 
-</div> <!-- End wrapper container  -->
+	
+
+</div> <!-- End main content  -->
+
+<div id="contactuspane" class="main-content-container hidden">
+		<h1> Contact Us </h1>
+
+		<p>This project was created by Ashley, Sean, James, Ankit, and Nina as a project for the W210 - Capstone course culminating the <a href= "https://datascience.berkeley.edu/"> Master of Information and Data Science</a> program at <a href= "http://www.berkeley.edu/"> UC Berkeley</a>. </p>
+
+		<p> This project has a lot more potential to continue development and enhance the analysis and customization. If you are intersted in the work so far, contributing to continual development, or have questions, please see our github page and/or email any of the team members.</p>
+
+		<p>
+		<a href= "https://github.com/SeanU/waq"> WAQ Github Page </a>
+		</p>
+
+		<p>
+		<ul>
+			<li>Sean "Uniquify" Underwood - seanu@ischool.berkeley.edu</li>
+			<li>James "Dambyote" King - king@ischool.berkeley.edu</li>
+			<li>Ashley "La Madrina" Levato - ashley.dsci@ischool.berkeley.edu</li>
+			<li>Ankit "What if I get hit by a bus" Tharwani - ankittharwani@ischool.berkeley.edu</li>
+			<li>Nina "I can kick your ass in 7 languages" Kuklisova - nkuklisova@ischool.berkeley.edu</li>
+		</ul>
+		</p>
+	</div>
+
+<div id="knowmorepane" class="main-content-container hidden">
+	<h1> Know More About WAQ</h1>
+
+		<p>WAQ is a toxic substance data consolidation platform which allows virtually any user easy access to their overall exposure levels of pollutants while providing the the ability to drill down into specifics with context, resources, and analysis seamlessly integrated into visualizations. The WAQ platform empowers users with digestible and accessible information to make pertinent decisions for themselves and their families. This way the next time you take your kid out for a long hike and let your dog swim in the stream you are aware of your exposure.</p>
+
+		<h2> Data Sources </h2>
+		<p>WAQ uses raw air and water quality data from the US Evironmental Protection Agency (EPA) as well as EPA regulation levels and standards to provide the user with digestable information on contaminants thruoghout the US. The data is cleaned, standardized, and consolidated to provide easy access to any user.</p>
+
+		<h2> Color Codes</h2>
+		<p>The main WAQ page allows user to search for any location natiowide and quickly see nearby measurment sites and the status of polluants on a color coded scale. 
+		<ul>Red samples are above regulated limits and may pose health risks</ul>
+		<ul>Amber/Yellow samples are below regulated limits but above recomended levels and prolonged exposure may pose risk</ul>
+		<ul>Green samples are below recomended limits and (theoretically) pose no health risks</ul></p>
+
+		<h2> Machine Learning </h2>
+		<p>WAQ also provides a machine learning model estimate of the location searched, which is predicted using historical data. This estimate allows the user to see a prediction for areas that may not have as many sample sites nearby. The model estimate is differentied from the actual measurements to distunguish concrete measurements from estimataions. 
+		</p>
+
+</div>
 
 
-
-<!-- <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script
->
-<script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js?cacheBust=56"></script> -->
-
-<!-- <script type="text/javascript" src="scripts/infobox.min.js"></script> -->
-<!-- script type="text/javascript" src="scripts/chosen.min.js"></script>
+<script type="text/javascript" src="scripts/infobox.min.js"></script>
+<script type="text/javascript" src="scripts/chosen.min.js"></script>
 
 <script type="text/javascript" src="scripts/magnific-popup.min.js"></script>
 <script type="text/javascript" src="scripts/owl.carousel.min.js"></script>
@@ -318,7 +324,7 @@
 <script type="text/javascript" src="scripts/jquery.jpanelmenu.js"></script>
 <script type="text/javascript" src="scripts/masonry.min.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
- -->
+
 
 </div>
 <!-- Wrapper / End -->

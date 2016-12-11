@@ -549,4 +549,31 @@ function makeSummaryChart(data, poltype='Water') {
 } //end summary chart function
 
 
+// Enable navigation bar buttons
+$('#HomeButton').click(function() {
+    $('.navpanebutton').removeClass("current");
+    $('#homepane').removeClass("hidden");
+    $('#knowmorepane').addClass("hidden");
+    $('#contactuspane').addClass("hidden");  
+    $('#HomeButton').addClass("current");
+    });
+
+$('#KnowMoreButton').click(function() {
+    $('.navpanebutton').removeClass("current");
+    $('#homepane').addClass("hidden");
+    $('#contactuspane').addClass("hidden");
+    $('#knowmorepane').removeClass("hidden");   
+    $('#KnowMoreButton').addClass("current");
+    });
+
+$('#ContactUsButton').click(function() {
+    $('.navpanebutton').removeClass("current");
+    $('#contactuspane').removeClass("hidden");
+    $('#knowmorepane').addClass("hidden");  
+    $('#homepane').addClass("hidden");   
+    $('#ContactUsButton').addClass("current");
+    });
+
+
+
 
