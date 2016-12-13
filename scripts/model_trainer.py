@@ -172,7 +172,7 @@ class MetaModel(object):
 
     def to_pickle(self, file_path):
         with open(file_path, 'wb') as fp:
-            dill.dump(self, fp)
+            dill.dump(self, fp, protocol=2)
 
 
 # load the data and run the trainers
