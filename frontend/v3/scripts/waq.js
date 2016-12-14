@@ -4,6 +4,9 @@ var map;            // A scaled graphical representation of the ground viewed fr
 var emphMarker;     // This is the marker that will be used to highlight a location
 var dataSummary;       // To hold a percentage value of the "goodness" of the current data set
 var dat;
+var markers;
+var predictionTableNumber = 1;
+
 
 function initMap() {
 
@@ -13,7 +16,9 @@ function initMap() {
     zoom: 12,
     scaleControl: true,
     center: myLatLng,
-    minZoom:10
+    minZoom:10,
+    disableDoubleClickZoom: true
+
     });                
 
     var input = document.getElementById('pac-input');
@@ -84,13 +89,20 @@ function initMap() {
           map.fitBounds(bounds);
         });
 
-
-
-  var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'Hello World!'
-  });
+    // Drop a pin and fetch modeled pollutants on double-click
+    google.maps.event.addListener(map, "dblclick", function(event) {
+        // place a marker
+        placeMarker(event.latLng);
+        console.log('Marker placed at ', event.latLng);
+        // display the lat/lng in your form's lat/lng fields
+        //document.getElementById("latFld").value = event.latLng.lat();
+        //document.getElementById("lngFld").value = event.latLng.lng();
+        });
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Hello World!'
+        });
 
   emphMarker = new google.maps.Marker({
     position: myLatLng,
@@ -105,13 +117,29 @@ function initMap() {
     visible:false
   });
 
-  //google.maps.event.addListener(map, 'bounds_changed', 
-  //google.maps.event.addListener(map, 'idle',   
-  var timeout;
-  resetSummaryChart();
-  google.maps.event.addListener(map, 'bounds_changed', function () {
-    window.clearTimeout(timeout);
-    timeout = window.setTimeout(function () {
+
+    var timeout;
+    resetSummaryChart();
+    google.maps.event.addListener(map, 'bounds_changed', function () {
+        window.clearTimeout(timeout);
+        timeout = window.setTimeout(function () {
+        redraw(markers);
+        },500);
+    })
+        // Enable filters to re-query data
+        $('#AirCheck')[0].addEventListener('change', function (){redraw(markers)}, false);
+        $('#WaterCheck')[0].addEventListener('change', function (){redraw(markers)}, false);
+        $('#pollutantDropdown').change( function(){redraw(markers)});
+        $('#statusDropdown').change(function(){redraw(markers)});
+
+}; //end of initMap
+
+
+    function redraw(markers) {
+        var timeout;
+        resetSummaryChart();
+      
+        
         var bounds = map.getBounds();
         var ne = bounds.getNorthEast(); // LatLng of the north-east corner
         var sw = bounds.getSouthWest(); // LatLng of the south-west corder
@@ -129,21 +157,91 @@ function initMap() {
                 imagePath: 'images/m', 
                 maxZoom: '10',
                 minimumClusterSize: '6'
-            });
+                });
 
 
-        var sms = fetchSites(ne,sw,map, markerCluster);
-        
-      }); //time in ms, that will reset if next 'bounds_changed' call is send, otherwise code will be executed after that time is up
+        fetchSites(ne,sw,map, markerCluster);
+        resetSummaryChart();
+        populateTable();
+          
 
-    }, 500);
+    }
 
-      
-      
 
-  
+
+function placeMarker(location) {
+    var contentString = 'Dambyote!';
+
+    console.log(location);
+    var infowindow = new google.maps.InfoWindow({
+          content: fetchInfoWindowHeader(location)
+        });
+
+    populateMarkerTable(location);
+
+    var marker = new google.maps.Marker({
+        position: location, 
+        map: map,
+        color: '#00FF00'
+    });
+
+    marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+    marker.addListener('dblclick', function() {
+      marker.setMap(null);
+    });
+
+
+    infowindow.open(map,marker);
+
+    // add marker in markers array
+    //markers.push(marker);
+
+} // end of placeMarker
+
+function fetchInfoWindowHeader(){
+    var headerMarkup = `
+    <div class="table-container">
+        <table id="markertable`+predictionTableNumber+`">
+            <thead>
+                <tr>
+                    <th> Contaminant </th>
+                    <th> Estimated Status </th>
+                </tr>
+            </thead>
+        </table>
+    </div>`;
+
+            return headerMarkup;
+
+}
+
+function populateMarkerTable(loc) {
     
-}; //end of initMap
+    var modelWaterURL = 'http://api.waq.dog:5000/getPrediction?type=Water&lat=' + loc.lat() + '&lng=' + loc.lng();
+    var modelAirURL = 'http://api.waq.dog:5000/getPrediction?type=Air&lat=' + loc.lat() + '&lng=' + loc.lng();
+
+
+    
+
+    $.getJSON(modelWaterURL, function(thisPrediction){
+
+        $.each(thisPrediction,function(datapoint){
+
+            thisRow = thisPrediction[datapoint];
+            console.log('Datapoint: ', datapoint);
+            $('#markertable'+predictionTableNumber+' tr:last').after('<tr><td data-field=status>'+thisRow.contaminant+'</td><td>'+thisRow.status+'</td></tr>');
+            
+        });
+
+    console.log('Prediction: ', thisPrediction);
+    predictionTableNumber += 1;
+
+    });
+};
+
 
 function mapTableCrossLink(marker=null,e=null, row=null, $element=null){
     console.log('Map/table link function activated.  Marker: ', marker);
@@ -176,7 +274,7 @@ function mapTableCrossLink(marker=null,e=null, row=null, $element=null){
 
         // Scan the table to find the matching row(s) & highlight it/them.
         // # Start with i=3 to skip the header rows end a -1 to skip footer
-        for (var i = 3, len = dtNodes.length-1; i < len; i++) {
+        for (var i = 1, len = dtNodes.length-3; i < len; i++) {
             console.log(dtData.length, i);
             thisLatFloat = parseFloat(dtData[i+1].lat);
             thisLonFloat = parseFloat(dtData[i+1].lng);
@@ -197,135 +295,57 @@ function mapTableCrossLink(marker=null,e=null, row=null, $element=null){
             };
 };
 }
+
+function getFilterStates(){
+    // Returns a string that can be used directly in the API
+    console.log('Fetching current filter states.');
+    var polStat  = $('#pollutantDropdown :selected').text();
+    var statStat = $('#statusDropdown :selected').text();
+    var waterStat = $('#WaterCheck').val();
+    var airStat = $('#AirCheck').val();
+
+    console.log('States: ', polStat, statStat,waterStat,airStat);
+
+    var outString = ''
+
+    if ( (polStat != '')&(polStat != 'Pollutant (Any)') ){
+        outString += '&contaminant=' + polStat;
+    }
+
+    if ( (statStat != '')&(statStat != 'Status (Any)') ){
+        outString += '&status=' + statStat;
+    }
+
+    if ($('#AirCheck').val()=="on" & $('#WaterCheck').val()=="off"){;
+        outString += '&type=Air';
+    }
+    if ($('#WaterCheck').val()=="on" & $('#AirCheck').val()=="off"){;
+        outString += '&type=Air';
+    }
+
+    return outString
+
+}
 function fetchSites(ne,sw,map, markerCluster) {
-    // REST Query Structure: 
-    //     /getWaterSites/:SWLat/:SWLon/:NELat/:NELon
-    //     http://130.211.86.94:8080/getWaterSites/34.80/-117.040/34.99/-117.050
-
-
-    resetSummaryChart(); //sets the summary plot bars to zero
     
+    resetSummaryChart(); //sets the summary plot bars to zero
     markerCluster.resetViewport(); // present a clean image after zooming and panning
     data=null;
 
-    //var water_api_url = "http://130.211.86.94:8080/getWaterSites/";
-    //var water_api_url = "http://130.211.86.94:8080/getMeasurementData/";
-    var water_api_url = "http://130.211.86.94:8080/getMeasurements/Water/";
-    var air_api_url = "http://130.211.86.94:8080/getMeasurements/Air/";
-    
-    water_api_url += sw.lat() + '/' + ne.lng() + '/' + ne.lat() + '/' + sw.lng();
-    air_api_url += sw.lat() + '/' + ne.lng() + '/' + ne.lat() + '/' + sw.lng();
+    $('#statusDropdown :selected').text();
 
-    console.log(water_api_url);
-    console.log(air_api_url);
+    var data_api_url = "http://api.waq.dog:8080/getMeasurements?";
+
+    data_api_url += 'SWLat='+sw.lat() + '&SWLon=' + sw.lng() +'&NELat='+ne.lat() + '&NELon='+ ne.lng();
+    data_api_url += getFilterStates();
+
+    console.log(data_api_url);
 
     var sensorMarkers = [];
 
 
-    // ########. Fetch air data, process, and add to map
-    $.getJSON(air_api_url, function(data) {
-
-    //data is the JSON string
-        
-        console.log('Number of return datapoints: '+data.length);
-
-        var image = 'http://findicons.com/files/icons/1156/fugue/16/water.png';
-        var im_green = {
-            url: 'images/greenair.png',
-            // size: new google.maps.Size(16, 16),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 0)
-            };
-
-        var im_orange = {
-            url: 'images/amberair.png',
-            // size: new google.maps.Size(16, 16),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 0)
-            };
-        
-        var im_red = {
-            url: 'images/redair.png',
-            // size: new google.maps.Size(16, 16),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 0)
-            };
-
-
-        // loop through each point returned from the API
-        $.each(data,function(datapoint){
-
-            thisRow = data[datapoint];
-
-            var thisLatLng = {lat: Number(thisRow.lat), lng: Number(thisRow.lng)};
-            var thisColor = thisRow.status.substring(0,5);
-            
-            //console.log(thisColor);
-
-            if (thisColor.substring(0,3)=='Red'){
-                thisIcon = im_red
-                //thisLabel = "\u2620";
-                // thisLabel = "!";
-                //font-size = 12;
-            }
-            else if (thisColor=='Green'){
-                thisIcon=im_green
-                // thisLabel='.';
-            }
-            else if (thisColor=='Orange'){
-                thisIcon=im_amber
-                // thisLabel="*";
-            }
-
-            else {
-                thisIcon=image;
-            }
-            //console.log(thisLatLng);
-
-            thisTitle = '';
-            thisTitle += 'Site ID: \t\t\t' + thisRow.site_id + '\n';
-            thisTitle += 'Measurement: \t' + thisRow.contaminant + ' in ';
-
-            thisTitle +=    thisRow.contaminant_type + ' (' + thisRow.contaminant_cat + ')\n';
-            thisTitle += 'Value: \t\t\t' + thisRow.value + '\n';
-
-            thisTitle += 'Measured on: \t\t' + thisRow.measurement_date + ' at ' + thisRow.measurement_time + '\n';
-
-            thisSize = new google.maps.Size(16, 16);
-
-            var thismarker = new google.maps.Marker({
-                position: thisLatLng,
-                map: map,
-                icon: thisIcon,
-                title: thisTitle,
-                size: thisSize
-                // label: thisLabel
-            });
-
-            // Add a marker click listener
-            // which highlights the table row
-            thismarker.addListener('click', 
-                function() {
-                    mapTableCrossLink(marker=thismarker);
-                    });
-
-            thismarker.addListener('dblclick', 
-                function() {
-                    console.log('Map marker double-clicked.  Centering map on marker.');
-                    map.setCenter(thismarker.getPosition());
-                    });
-
-
-            //console.log('Pushing point')
-            sensorMarkers.push(thismarker);
-            markerCluster.addMarker(thismarker);
-        });
-        populateTable(data,clearOld=true);
-        makeSummaryChart(data,'Air');
-    });
-
     // ########. Fetch water data, process, and add to map
-    $.getJSON(water_api_url, function(data) {
+    $.getJSON(data_api_url, function(data) {
 
     //data is the JSON string
         
@@ -364,18 +384,18 @@ function fetchSites(ne,sw,map, markerCluster) {
             
             //console.log(thisColor);
 
-            if (thisColor.substring(0,3)=='Red'){
-                thisIcon = im_red
+            if (thisColor.substring(0,3)=='red'){
+                thisIcon = im_red;
                 //thisLabel = "\u2620";
                 // thisLabel = "!";
                 //font-size = 12;
             }
-            else if (thisColor=='Green'){
-                thisIcon=im_green
+            else if (thisColor=='green'){
+                thisIcon=im_green;
                 // thisLabel='.';
             }
-            else if (thisColor=='Amber'){
-                thisIcon=im_amber
+            else if (thisColor=='amber'){
+                thisIcon=im_amber;
                 // thisLabel="*";
             }
 
@@ -421,8 +441,8 @@ function fetchSites(ne,sw,map, markerCluster) {
             sensorMarkers.push(thismarker);
             markerCluster.addMarker(thismarker);
         });
-        populateTable(data);
-        makeSummaryChart(data,'Water'); 
+        populateTable(data,clearOld=true);
+        makeSummaryChart(data); 
     });
 
 return sensorMarkers;
@@ -433,30 +453,27 @@ return sensorMarkers;
 // Enable a clickable row that kicks an action turns green
 
 function populateTable(dat,clearOld=false) {
-    var $table = $('#table');
-    jsonData = dat;
-    // Add data to the table
-    console.log('Adding ', jsonData.length, ' points to table.');
-    // console.log('DT: ', typeof(jsonData));
-    if (clearOld) {
-        $table.bootstrapTable('load',jsonData);
-    } else{
-        $table.bootstrapTable('append',jsonData);
+    if (dat){
+        var $table = $('#table');
+        jsonData = dat;
+        // Add data to the table
+        console.log('Adding ', jsonData.length, ' points to table.');
+        // console.log('DT: ', typeof(jsonData));
+        if (clearOld) {
+            $table.bootstrapTable('load',jsonData);
+        } else{
+            $table.bootstrapTable('append',jsonData);
+        }
+
+        // Selecting a row highlights the position on a map
+        $(function () {
+            $table.on('click-row.bs.table', 
+                function (e, row, $element) {
+                    mapTableCrossLink(marker=null,e=e, row=row, $element=$element)
+                });                
+        });
+        console.log(jsonData);
     }
-
-    // Selecting a row highlights the position on a map
-    $(function () {
-        $table.on('click-row.bs.table', 
-            function (e, row, $element) {
-                mapTableCrossLink(marker=null,e=e, row=row, $element=$element)
-            });                
-    });
-    console.log(jsonData);
-    // for (ii = 0; ii < jsonData.length; ii++) {
-    //     console.log(jsonData[ii].status);
-
-    // }
-
 }; // end of function populateTable
 
 
@@ -464,7 +481,22 @@ function populateTable(dat,clearOld=false) {
 
 // This formats the "baseball cards" for the contaminants in the table
 function CardFormatter(value, row, index) {
-  return "<a href='pollutantCards/"+row.contaminant.toLowerCase()+".html' target='_blank'>"+value+"</a>";
+    if (value=="Lead"){
+        if (row.contaminant_type.toLowerCase()=='air'){
+            return "<a href='pollutantCards/lead_air.html' target='_blank'>"+value+"</a>";
+        }
+        else{
+            return "<a href='pollutantCards/lead_water.html' target='_blank'>"+value+"</a>";   
+        }
+    }
+    else{
+        return "<a href='pollutantCards/"+row.contaminant.toLowerCase()+".html' target='_blank'>"+value+"</a>";
+    }
+}
+
+
+function SigFigFormatter(value, row, index) {
+    return Number(Number(value).toPrecision(3)).toExponential();
 }
 
 function resetSummaryChart() {
@@ -485,68 +517,101 @@ function resetSummaryChart() {
     redboxwater[0].style.width = 1+"px";
 }
 
-function makeSummaryChart(data, poltype='Water') {
+function makeSummaryChart(data) {
     console.log('Populating summary chart.');
 
-    if (poltype=='Air'){
-        var greenbox = $('#green-prop-box-air');
-        var yellowbox = $('#amber-prop-box-air');
-        var redbox = $('#red-prop-box-air');
-    }
+    var greenboxAir= $('#green-prop-box-air');
+    var yellowboxAir = $('#amber-prop-box-air');
+    var redboxAir = $('#red-prop-box-air');
+    var greenboxWater = $('#green-prop-box-water');
+    var yellowboxWater = $('#amber-prop-box-water');
+    var redboxWater= $('#red-prop-box-water');
 
-    else{
-        var greenbox = $('#green-prop-box-water');
-        var yellowbox = $('#amber-prop-box-water');
-        var redbox = $('#red-prop-box-water');
-    }
 
-    var greenCount = 0;
-    var yellowCount = 0;
-    var redCount = 0;
+    var greenCountAir = 0;
+    var yellowCountAir = 0;
+    var redCountAir = 0;
+    var greenCountWater = 0;
+    var yellowCountWater = 0;
+    var redCountWater = 0;
 
     // Compute props
     $.each(data, function(datapoint){
 
         thisRow = data[datapoint];
-        
-        if (thisRow.status=="Green"){
-            greenCount+=1;
-        }
-        else if (thisRow.status=="Amber"){
-            yellowCount+=1;
-        }
-        else if (thisRow.status=="Red"){
-            redCount+=1;
+        //console.log('This row: ', data);
+
+        if (thisRow.contaminant_type=='Air'){
+            if (thisRow.status=="green"){
+                greenCountAir+=1;
+            }
+            else if (thisRow.status=="amber"){
+                yellowCountAir+=1;
+            }
+            else if (thisRow.status=="red"){
+                redCountAir+=1;
+            }
+            else {
+                console.log("Error: Bad status for point ", thisRow.status);
+            }
         }
         else {
-            console.log("Error: Bad status for point ", thisRow.status);
+
+            if (thisRow.status=="green"){
+                greenCountWater+=1;
+            }
+            else if (thisRow.status=="amber"){
+                yellowCountWater+=1;
+            }
+            else if (thisRow.status=="red"){
+                redCountWater+=1;
+            }
+            else {
+                console.log("Error: Bad status for point ", thisRow.status);
+            }
         }
 
     });
 
-    var totalCount = greenCount + yellowCount + redCount;
-    console.log(poltype,' Total Count: ', totalCount);
-    console.log(poltype,' Green Count: ' + greenCount);
-    console.log(100*greenCount/totalCount + '%');
+    var totalCountAir = greenCountAir + yellowCountAir + redCountAir;
+    var totalCountWater = greenCountWater + yellowCountWater + redCountWater;
+    
+    console.log(' Water Total Count: ', totalCountWater);
+    console.log(' Water Green Count: ' + greenCountWater);
+    console.log(100*greenCountWater/totalCountWater + '%');
 
 
-    // Set box widths
-    if (totalCount >= 1){
-        greenbox[0].style.width = 100* greenCount/totalCount + '%';//'5%'
-        yellowbox[0].style.width = 100*yellowCount/totalCount + '%';//'5%'
-        redbox[0].style.width = 100*redCount/totalCount + '%';//'5%'
+    // Set box widths (Air)
+    if (totalCountAir >= 1){
+        greenboxAir[0].style.width = 100* greenCountAir/totalCountAir + '%';//'5%'
+        yellowboxAir[0].style.width = 100*yellowCountAir/totalCountAir + '%';//'5%'
+        redboxAir[0].style.width = 100*redCountAir/totalCountAir + '%';//'5%'
     }
 
     else {
         // If there are no data, don't show the bars
-        greenbox[0].style.width = '0%';
-        yellowbox[0].style.width = '0%';
-        redbox[0].style.width = '0%';
+        greenboxAir[0].style.width = '0%';
+        yellowboxAir[0].style.width = '0%';
+        redboxAir[0].style.width = '0%';
+    }
+
+    // Set box widths (Water)
+    if (totalCountWater >= 1){
+        greenboxWater[0].style.width = 100* greenCountWater/totalCountWater + '%';//'5%'
+        yellowboxWater[0].style.width = 100*yellowCountWater/totalCountWater + '%';//'5%'
+        redboxWater[0].style.width = 100*redCountWater/totalCountWater + '%';//'5%'
+    }
+
+    else {
+        // If there are no data, don't show the bars
+        greenboxWater[0].style.width = '0%';
+        yellowboxWater[0].style.width = '0%';
+        redboxWater[0].style.width = '0%';
     }
 
 
-
 } //end summary chart function
+
 
 
 // Enable navigation bar buttons
@@ -574,6 +639,17 @@ $('#ContactUsButton').click(function() {
     $('#ContactUsButton').addClass("current");
     });
 
+$('#BigMapButton').click(function() {
+    $('.mapsizebutton').removeClass('current');
+    $('#BigMapButton').addClass('current');
+    $('#map-container').css('width','70%');
+    $('#tools-container').css('width','29.5%');
+    });
 
-
+$('#BigTableButton').click(function() {
+    $('.mapsizebutton').removeClass('current');
+    $('#BigTableButton').addClass('current');
+    $('#map-container').css('width','35%');
+    $('#tools-container').css('width','64.5%');
+    });
 
