@@ -360,7 +360,8 @@ function fetchSites(ne,sw,map, markerCluster) {
         
         console.log('Number of return datapoints: '+data.length);
 
-        var image = 'http://findicons.com/files/icons/1156/fugue/16/water.png';
+        var image = 'http://findicons.com/files/icons/1156/fugue/16/water.png'; // a backup
+
         var im_green = {
             url: 'images/greenwater.png',
             // size: new google.maps.Size(16, 16),
@@ -382,6 +383,27 @@ function fetchSites(ne,sw,map, markerCluster) {
             anchor: new google.maps.Point(0, 0)
             };
 
+        var im_greenair = {
+            url: 'images/greenair.png',
+            // size: new google.maps.Size(16, 16),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 0)
+            };
+
+        var im_amberair = {
+            url: 'images/amberair.png',
+            // size: new google.maps.Size(16, 16),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 0)
+            };
+        
+        var im_redair = {
+            url: 'images/redair.png',
+            // size: new google.maps.Size(16, 16),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 0)
+            };
+
         
         // loop through each point returned from the API
         $.each(data,function(datapoint){
@@ -390,26 +412,40 @@ function fetchSites(ne,sw,map, markerCluster) {
 
             var thisLatLng = {lat: Number(thisRow.lat), lng: Number(thisRow.lng)};
             var thisColor = thisRow.status.substring(0,5);
-            
-            //console.log(thisColor);
+            var thisType = thisRow.contaminant_type;
 
-            if (thisColor.substring(0,3)=='red'){
-                thisIcon = im_red;
-                //thisLabel = "\u2620";
-                // thisLabel = "!";
-                //font-size = 12;
-            }
-            else if (thisColor=='green'){
-                thisIcon=im_green;
-                // thisLabel='.';
-            }
-            else if (thisColor=='amber'){
-                thisIcon=im_amber;
-                // thisLabel="*";
+            console.log('This Type ***************', thisType);
+
+            if (thisType == "Air") {
+                if (thisColor.substring(0,3)=='red'){
+                    thisIcon = im_redair;
+                }
+                else if (thisColor=='green'){
+                    thisIcon=im_greenair;
+                }
+                else if (thisColor=='amber'){
+                    thisIcon=im_amberair;
+                }
+
+                else {
+                    thisIcon=image;
+                }
             }
 
             else {
-                thisIcon=image;
+                if (thisColor.substring(0,3)=='red'){
+                    thisIcon = im_red;
+                }
+                else if (thisColor=='green'){
+                    thisIcon=im_green;
+                }
+                else if (thisColor=='amber'){
+                    thisIcon=im_amber;
+                }
+
+                else {
+                    thisIcon=image;
+                }
             }
             //console.log(thisLatLng);
 
