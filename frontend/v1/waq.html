@@ -1,0 +1,137 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/js/themes/default/easyui.css">
+        <!-- <link rel="stylesheet" type="text/css" href="/js/themes/icon.css"> -->
+        <!-- <link rel="stylesheet" type="text/css" href="/js/demo/demo.css"> -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-table.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" type="text/css" href="css/waq.css"> -->
+        <link rel="stylesheet" type="text/css" href="css/waqnew.css">
+
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/js-marker-clusterer/src/markerclusterer.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="js/bootstrap-table.js"></script><!-- Latest compiled and minified CSS -->
+        <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+        <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js?cacheBust=56"></script>
+
+        <title>Pollution Sensors</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+
+    </head>
+
+    <body>
+        <div class="main-window">
+
+            <div class="searchbox" style="height:0px">
+                <form>
+                    <input id="pac-input" class="controls" size=100 type="text" placeholder="Enter Search Location">
+                </form>
+            </div>
+
+            <div class="bottom-box" id="bottom-box">
+                <a class="humans" href=humans.txt>
+                <img src="http://humanstxt.org/img/oficial-logos/humanstxt-isolated-blank.gif" alt="Humans.txt Icon">
+                </a>
+            
+                <!-- Add the time span slider -->
+                <div class="timespan_label">
+                    <p>Time Span of Interest</p>
+                </div>
+
+                <div class="timespan">
+                    <input class="easyui-slider" id="timeslider">
+                    <script> 
+                        // Dynamically get the current year to use as the time horizon maximum
+                        var d = new Date();
+                        var thisYear = d.getFullYear();
+                        var sliderOptions = "showTip: true,range: true, min: 1900, max: "+thisYear+", value: [1980,"+thisYear+"]";
+                        document.getElementById("timeslider").setAttribute("data-options", sliderOptions);
+                    </script>
+                    </div>
+            </div>
+
+            <div id="map">
+                <script src=waq.js></script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATqp-SH3dfKTkATjFfw1MuYeEzs_JeO9E&callback&libraries=places&callback=initMap" async defer></script>
+            </div>
+
+            <div id="right-box" class="right-box">
+                <script>
+                // Change style when box is clicked
+                rightbox = $('#right-box');
+                logo = $('#logo');
+
+                    rightbox.on('dblclick', 
+                function() {
+                    console.log('Right box clicked');
+                    if (rightbox.hasClass('right-box-lock')){
+                        rightbox.removeClass("right-box-lock");
+                        rightbox.addClass('right-box');
+
+                        $('.logolock').addClass('logo');
+                        $('.logolock').removeClass('logolock');
+
+                        $('.summaryChartLock').addClass('summaryChart');
+                        $('.summaryChartLock').removeClass('summaryChartLock');
+                        }
+
+                    else{
+                        rightbox.addClass('right-box-lock');
+                        rightbox.removeClass('right-box')
+
+                        $('.logo').addClass('logolock');
+                        $('.logo').removeClass('logo');
+
+                        $('.summaryChart').addClass('summaryChartLock');
+                        $('.summaryChart').removeClass('summaryChart');
+                        }
+                    
+                    });
+                </script>
+
+                <div id=summaryChart class=summaryChart style="overflow-y: hidden;">
+                    <script type="text/javascript">
+                        makeSummaryChart();
+                    </script>
+                </div>
+
+                    <div id=logo class=logo>
+                        <img class=logo src="http://lapawspa.com/mt_images/buoyant%2520collar%2520illustration_no%2520collar_with%2520logo.gif" alt="A stolen dog logo">
+                    </div>
+                        <!-- data-url="http://130.211.86.94:8080/getMeasurementData/34.80/-117.040/35.99/-117.050" -->
+                            <table  id="table" 
+                                    data-toggle="table" 
+                                    data-toolbar=".toolbar"
+                                    data-search="true"
+                                    data-show-refresh="true"
+                                    data-show-columns="false"
+                                    data-pagination="false">
+
+                                <thead>
+                                    <tr>
+                                    <th data-field = status >Status</th>
+                                    <th data-field = contaminant_type>Type</th>
+                                    <th data-field = contaminant data-formatter="CardFormatter">Name</th>
+                                    <th data-field = measurement_date>Measure Date</th>
+                                    <th data-field = contaminant_cat>Category</th>
+                                    <th data-field = value>Value</th>
+                                    <th data-field = site_id> Site ID</th>
+                                    <th data-field = code>Code</th>
+                                    <th data-field = lat>Lat</th>
+                                    <th data-field = lng>Lng</th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+            </div>
+        </div>
+
+          
+    </body>
+    </html>
