@@ -21,6 +21,9 @@
 
 <!-- <script type="text/javascript" src="scripts/infobox.min.js"></script> -->
 <script type="text/javascript" src="scripts/jquery-2.2.0.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ -->
 <script type="text/javascript" src="scripts/markerclusterer.js"></script>
 <script type="text/javascript" src="scripts/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
@@ -36,67 +39,45 @@
 <!-- Wrapper -->
 <div id="wrapper">
 
-
-	<!-- Header Container
-	================================================== -->
-	<header id="header-container" class="fullwidth">
-		<!-- Header -->
-		<div id="header">
-			<div class="container">
-
-				<!-- Left Side Content -->
-				<div class="left-side">
-
-					<!-- Logo -->
-					<div id="logo">
-						<a href="index.html"><img src="images/logo.png" alt=""></a>
-					</div>
+	<!-- Header -->
+	<div id="header">
+			<!-- Logo -->
+			<div id="logo">
+				<a href="index.html"><img src="images/logo.png" alt=""></a>
+			</div>
 
 
-					<!-- Mobile Navigation -->
-					<div class="menu-responsive">
-						<i class="fa fa-reorder menu-trigger"></i>
-					</div>
+			<!-- Main Navigation -->
+			<div id="page-nav">
+				<nav id="navigation" class="style-1">
+					<ul id="responsive">
+
+						<li id="HomeButton" class="navpanebutton current"><a href="#">Home</a>
+						</li>
+
+						<li id="KnowMoreButton" class="navpanebutton"><a href="#">Know More</a>
+						</li>
+
+						<li id="ContactUsButton" class="navpanebutton"><a href="#">Contact Us</a>
+						</li>
+
+					</ul>
+				</nav>
+			</div>
+
+			<div id="layout-nav" style="border-left:solid 1px #000">
+				<nav id="navigation" class="style-1">
+					<ul id="responsive">
+						<li id="BigMapButton" class="current mapsizebutton"><a href="#">Big Map</a>
+						</li>
+						<li id="BigTableButton" class="mapsizebutton"><a href="#">Big Table</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+	</div> <!-- Header / End -->
 
 	
-					<!-- Main Navigation -->
-					<nav id="navigation" class="style-1">
-						<ul id="responsive">
-
-							<li id="HomeButton" class="navpanebutton current"><a href="#">Home</a>
-							</li>
-
-							<li id="KnowMoreButton" class="navpanebutton"><a href="#">Know More</a>
-							</li>
-
-							<li id="ContactUsButton" class="navpanebutton"><a href="#">Contact Us</a>
-							</li>
-
-						</ul>
-					</nav>
-					<div class="clearfix"></div>
-					<!-- Main Navigation / End -->
-
-				</div>
-				<!-- Left Side Content / End -->
-
-				<div class="right-side">
-					<!-- Header Widget -->
-					<div class="header-widget">
-						<a href="login-register.html" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a>
-					</div>
-					<!-- Header Widget / End -->
-				</div>
-				<!-- Right Side Content / End -->
-
-			</div>
-		</div> <!-- Header / End -->
-		
-
-	</header>
-	<div class="clearfix"></div>
-	<!-- Header Container / End -->
-
 
 	<!-- Content
 	================================================== -->
@@ -105,7 +86,12 @@
 
 		<!-- Map -->
 		<div id="map-container">
-
+<!-- 			<script>
+			$( function() {
+    			$( "#map-container" ).resizable();
+  			} );
+  			</script>
+ -->
 			<div id="map-nav-container">
 			 <!-- Map Navigation -->
 			 <div id="search-bar-container">
@@ -145,91 +131,79 @@
 
 					<div class="row">
 						<div class="col-md-12">
-
-
-							<!-- Title -->
-							<h4 class="search-title">Filter Preferences</h4>
-							<!-- Form -->
 							<div class="main-search-box no-shadow">
-								
-								<!-- More Search Options -->
-								<a href="#" class="more-search-options-trigger margin-top-20" data-open-title="More Options" data-close-title="Less Options"></a>
+								<!-- Row With Forms -->
+								<div class="row with-forms">
 
-								<div class="more-search-options relative">
-									<div class="more-search-options-container margin-top-30">
-
-										<!-- Row With Forms -->
-										<div class="row with-forms">
-
-											<!-- Age of Home -->
-											<div class="col-fs-3">
-												<select data-placeholder="Pollutant" class="chosen-select-no-single" >
-													<option label="blank"></option>
-													<option> Antimony </option>
-													<option> Arsenic </option>
-													<option> Barium </option>
-													<option> Beryllium </option>
-													<option> Cadmium </option>
-													<option> Chromium </option>
-													<option> Carbon Monoxide </option>
-													<option> Copper </option>
-													<option> E. Coli </option>
-													<option> Enterococcus </option>
-													<option> Fecal Coliform </option>
-													<option> Fluoride </option>
-													<option> HAA5 </option>
-													<option> Lead </option>
-													<option> Mercury </option>
-													<option> Nitrate </option>
-													<option> Nitrite </option>
-													<option> NO2 </option>
-													<option> Ozone </option>
-													<option> Particulates </option>
-													<option> PCBs </option>
-													<option> Selenium </option>
-													<option> Simazine </option>
-													<option> SO2 </option>
-													<option> Total Coliform </option>
-													<option> TTHMs </option>
-													<option> Xylene </option>
-												</select>
-											</div>
-
-											<!-- Max Area -->
-											<div class="col-fs-3">
-												<select data-placeholder="Status" class="chosen-select-no-single" >
-													<option label="blank"></option>
-													<option>Status (Any)</option>
-													<option>Red</option>
-													<option>Amber</option>
-													<option>Green</option>
-												</select>
-											</div>
-
-										</div>
-										<!-- Row With Forms / End -->
+									<div class="col-fs-3">
+										<select id="pollutantDropdown" data-placeholder="Pollutant" class="chosen-select-no-single" >
+											<option label="blank"></option>
+											<option>Pollutant (Any)</option>
+											<option>Antimony</option>
+											<option>Arsenic</option>
+											<option>Barium</option>
+											<option>Beryllium</option>
+											<option>Cadmium</option>
+											<option>Chromium</option>
+											<option>Carbon Monoxide</option>
+											<option>Copper</option>
+											<option>E. Coli</option>
+											<option>Enterococcus</option>
+											<option>Fecal Coliform</option>
+											<option>Fluoride</option>
+											<option>HAA5</option>
+											<option>Lead</option>
+											<option>Mercury</option>
+											<option>Nitrate</option>
+											<option>Nitrite</option>
+											<option>NO2</option>
+											<option>Ozone</option>
+											<option>Particulates</option>
+											<option>PCBs</option>
+											<option>Selenium</option>
+											<option>Simazine</option>
+											<option>SO2</option>
+											<option>Total Coliform</option>
+											<option>TTHMs</option>
+											<option>Xylene</option>
+										</select>
+									</div>
 
 
-										<!-- Checkboxes -->
-										<div class="checkboxes in-row">
-
-											<input id="check-2" type="checkbox" name="check" checked>
-											<label for="check-2">Air Pollutants</label>
-
-											<input id="check-3" type="checkbox" name="check" checked>
-											<label for="check-3">Water Pollutants</label>
-
-
-										</div>
-										<!-- Checkboxes / End -->
-
+									<div class="col-fs-3">
+										<select id="statusDropdown" data-placeholder="Status" class="chosen-select-no-single" >
+											<option label="blank"></option>
+											<option>Status (Any)</option>
+											<option>Red</option>
+											<option>Amber</option>
+											<option>Green</option>
+										</select>
 									</div>
 
 								</div>
-								<!-- More Search Options / End -->
+								<!-- Row With Forms / End -->
 
+
+								<!-- Checkboxes -->
+								<div class="checkboxes in-row">
+
+									<input id="AirCheck" type="checkbox" name="check" checked>
+									<label for="AirCheck">Air Pollutants</label>
+
+									<input id="WaterCheck" type="checkbox" name="check" checked>
+									<label for="WaterCheck">Water Pollutants</label>
+
+
+								</div>
+								<!-- Checkboxes / End -->
 
 							</div>
+
+								<!-- </div>
+								More Search Options / End
+
+
+							</div> -->
 							<!-- Box / End -->
 						</div>
 					</div>
@@ -242,6 +216,8 @@
 	                data-toggle="table" 
 	                data-toolbar=".toolbar"
 	                data-search="true"
+	                data-filter-control="true"
+	                data-show-export="true"
 	                data-show-refresh="true"
 	                data-show-columns="false"
 	                data-pagination="false"
@@ -249,13 +225,13 @@
 
 		            <thead>
 		                <tr>
-		                <th data-field = status >Status</th>
-		                <th data-field = contaminant_type>Type</th>
-		                <th data-field = contaminant data-formatter="CardFormatter">Name</th>
-		                <th data-field = measurement_date>Measure Date</th>
-		                <th data-field = contaminant_cat>Category</th>
-		                <th data-field = value>Value</th>
-		                <th data-field = site_id> Site ID</th>
+		                <th data-field = status data-filter-control="select" data-sortable="true">Status</th>
+		                <th data-field = contaminant_type data-sortable="true">Type</th>
+		                <th data-field = contaminant data-formatter="CardFormatter" data-sortable="true">Name</th>
+		              	<th data-field = contaminant_cat data-sortable="true">Category</th>
+		                <th data-field = value data-sortable="true" data-formatter="SigFigFormatter">Value</th>
+		                <th data-field = measurement_date data-sortable="true">Measure Date</th>
+		                <th data-field = site_id data-sortable="true"> Site ID</th>
 		                <th data-field = code>Code</th>
 		                <th data-field = lat>Lat</th>
 		                <th data-field = lng>Lng</th>
