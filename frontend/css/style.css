@@ -10001,7 +10001,7 @@ div.layout-style {
     right: 0%;
     width: 29.5%;
     height: 100%;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 #filter-container{
@@ -10018,7 +10018,8 @@ div.layout-style {
     top: 0%;
     height: 70%;
     width: 100%;
-    overflow:scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 
@@ -10205,7 +10206,7 @@ div.layout-style {
     padding: 0px;
     height: 10%;
     width: 100%;
-    overflow: scroll;
+    overflow: hidden;
     display: inline-block;
 }
 
@@ -10227,7 +10228,7 @@ div.infowindow {
     left: 0;
     height: 650px;
     width: 1270px;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 #layout-nav {
@@ -10235,7 +10236,7 @@ div.infowindow {
     padding-left: 1%;
     height: 100%;
     width: 25%;
-    overflow: scroll;
+    overflow: hidden;
     display: inline-block;
 }
 
