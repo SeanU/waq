@@ -229,8 +229,6 @@ function populateMarkerTable(loc) {
     var modelAirURL = 'http://api.waq.dog:5000/getPrediction?type=Air&lat=' + loc.lat() + '&lng=' + loc.lng();
 
 
-    
-
     $.getJSON(modelWaterURL, function(thisPrediction){
 
         $.each(thisPrediction,function(datapoint){

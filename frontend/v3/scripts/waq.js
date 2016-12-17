@@ -226,7 +226,7 @@ function fetchInfoWindowHeader(){
 function populateMarkerTable(loc) {
     
     var modelWaterURL = 'http://api.waq.dog:5000/getPrediction?type=Water&lat=' + loc.lat() + '&lng=' + loc.lng();
-    // var modelAirURL = 'http://api.waq.dog:5000/getPrediction?type=Air&lat=' + loc.lat() + '&lng=' + loc.lng();
+    var modelAirURL = 'http://api.waq.dog:5000/getPrediction?type=Air&lat=' + loc.lat() + '&lng=' + loc.lng();
 
 
     
@@ -240,17 +240,6 @@ function populateMarkerTable(loc) {
             $('#markertable'+predictionTableNumber+' tr:last').after('<tr><td data-field=status>'+thisRow.contaminant+'</td><td>'+thisRow.status+'</td></tr>');
             
         });
-
-    // $.getJSON(modelAirURL, function(thisAirPrediction){
-
-    //     $.each(thisAirPrediction,function(datapoint){
-
-    //         thisRow = thisAirPrediction[datapoint];
-    //         console.log('Datapoint: ', datapoint);
-    //         $('#markertable'+predictionTableNumber+' tr:last').after('<tr><td data-field=status>'+thisRow.contaminant+'</td><td>'+thisRow.status+'</td></tr>');
-            
-    //     });
-
 
     console.log('Prediction: ', thisPrediction);
     predictionTableNumber += 1;
