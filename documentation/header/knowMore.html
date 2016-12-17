@@ -1,13 +1,17 @@
 <h1> Know More About WAQ</h1>
 
-<p>WAQ is a toxic substance data consolidation platform which allows virtually any user easy access to their overall exposure levels of pollutants while providing the the ability to drill down into specifics with context, resources, and analysis seamlessly integrated into visualizations. The WAQ platform empowers users with digestible and accessible information to make pertinent decisions for themselves and their families. This way the next time you take your kid out for a long hike and let your dog swim in the stream you are aware of your exposure.</p>
+<p>WAQ is a toxic substance data consolidation platform which allows virtually any user easy access to their overall exposure levels of pollutants while providing the ability to drill down into specifics with context, resources, and analysis seamlessly integrated into visualizations. The WAQ platform empowers users with digestible and accessible information to make pertinent decisions for themselves and their families. This way the next time you take your kid out for a long hike and let your dog swim in the stream you are aware of your exposure.</p>
 
-<p>WAQ uses raw air and water quality data from the US Evironmental Protection Agency (EPA) as well as EPA regulation levels and standards to provide the user with digestable information on contaminants thruoghout the US. The data is cleaned, standardized, and consolidated to provide easy access to any user.</p>
+<h2> Data Sources</h2>
+<p>WAQ uses raw air and water quality data from the US Environmental Protection Agency (EPA) as well as EPA regulation levels and standards to provide the user with digestible information on contaminants throughout the US. The data is cleaned, standardized, and consolidated to provide easy access to any user.</p>
 
-<p>The main WAQ page allows user to search for any location natiowide and quickly see nearby measurment sites and the status of polluants on a color coded scale. 
+<h2> Color Levels</h2>
+<p>The main WAQ page allows user to search for any location nationwide and quickly see nearby measurement sites and the status of pollutants on a color coded scale. 
 <ul>Red samples are above regulated limits and may pose health risks</ul>
-<ul>Yellow samples are below regulated limits but above recomended levels and prolonged exposure may pose risk</ul>
-<ul>Green samples are below recomended limits and pose no health risks</ul></p>
+<ul>Yellow samples are below regulated limits but above recommended levels and exposure to high risk individuals or prolonged exposure may pose risk</ul>
+<ul>Green samples are below recommended limits and pose no health risks</ul></p>
 
-<p>WAQ also provides a machine learning model estimate of the location searched, which is predicted using historical data. This estimate allows the user to see a prediction for areas that may not have as many sample sites nearby. The model estimate is differentied from the actual measurements to distunguish concrete measurements from estimataions. 
-</p>
+<h2> Machine Learning Estimates</h2>
+<p> Warning: The contaminant estimates are a work in progress and are subject to measurement bias from the historical data. Estimates are intended for the user to get a sense of their local situation but should not be treated as fact.</p>
+
+<p>WAQ also provides a machine learning model to estimate the contaminant values of any location a pin is dropped. This estimate allows the user to see a prediction for areas that may not have as many sample sites nearby. These predictions are built off of historical data and use random forest and k-nearest neighbor machine learning algorithms building off of success noted in academic literature. Separate models were tested and validated for each contaminant to capture nuances in the data. Model improvements will be continually updated to improve accuracy of estimates. The model estimate is also differentiated from the actual measurements to distinguish concrete measurements from estimations.</p>
