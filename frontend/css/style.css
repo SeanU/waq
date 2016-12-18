@@ -10228,7 +10228,8 @@ div.infowindow {
     left: 0;
     height: 650px;
     width: 1270px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 #layout-nav {
