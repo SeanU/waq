@@ -527,14 +527,15 @@ function populateTable(dat,clearOld=false) {
 function CardFormatter(value, row, index) {
     if (value=="Lead"){
         if (row.contaminant_type.toLowerCase()=='air'){
-            return "<a href='pollutantCards/lead_air.html' target='_blank'>"+value+"</a>";
+            return "<a href='pollutant.html?pollutant=lead_air' target='_blank'>"+value+"</a>";
         }
         else{
-            return "<a href='pollutantCards/lead_water.html' target='_blank'>"+value+"</a>";   
+            return "<a href='pollutant.html?pollutant=lead_water' target='_blank'>"+value+"</a>";   
         }
     }
     else{
-        return "<a href='pollutantCards/"+row.contaminant.toLowerCase()+".html' target='_blank'>"+value+"</a>";
+        pname = row.contaminant.toLowerCase().replace(' ', '_');
+        return "<a href='pollutant.html?pollutant=" + pname + "' target='_blank'>"+value+"</a>";
     }
 }
 

@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>WAQ Dog</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/main.css" id="colors">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-table.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+	  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<!-- Scripts
+================================================== -->
+
+<script type="text/javascript" src="scripts/jquery-2.2.0.min.js"></script>
+
+</head>
+
+<body class="overflow-hidden">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+	<!-- Header -->
+	<div id="header">
+			<!-- Logo -->
+			<div id="logo">
+				<a href="index.html"><img src="images/logo.png" alt=""></a>
+			</div>
+
+			<!-- Main Navigation -->
+			<!--<div id="page-nav">
+				<nav id="navigation" class="style-1">
+					<ul id="responsive">
+
+						<li id="HomeButton" class="navpanebutton current"><a href="../index.html">Home</a>
+						</li>
+
+						<li id="KnowMoreButton" class="navpanebutton"><a href="#">Know More</a>
+						</li>
+
+						<li id="ContactUsButton" class="navpanebutton"><a href="#">Contact Us</a>
+						</li>
+
+					</ul>
+				</nav>
+			</div>-->
+	</div> <!-- Header / End -->
+
+	
+
+	<!-- Content
+	================================================== -->
+	<div id="homepane" class="main-content-container">
+
+
+		<!-- Map -->
+		<!--<div id="map-container">
+
+			<div id="map">
+				<script src=scripts/waq.js></script>
+		    </div>  
+		</div>-->
+
+	</div> <!-- End main-content container  -->
+
+	
+
+</div> <!-- End main content  -->
+
+
+<!--<script type="text/javascript" src="scripts/infobox.min.js"></script>
+<script type="text/javascript" src="scripts/chosen.min.js"></script>
+
+<script type="text/javascript" src="scripts/jquery.jpanelmenu.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>-->
+
+
+</div>
+<!-- Wrapper / End -->
+
+<script type="text/javascript">
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
+var cardName = getUrlParameter('pollutant');
+
+$('#homepane').load('pollutantCards/' + cardName + '.html');
+
+</script>
+
+
+</body>
+
+</html>
