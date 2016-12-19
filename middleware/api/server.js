@@ -13,7 +13,7 @@ var app = express();
 var getAirQuality = "SELECT * FROM WAQ.air_quality;";
 const getWaterSites = "SELECT * FROM waq.water_sites WHERE solr_query='LatitudeMeasure:[~SWLat TO ~NELat] AND LongitudeMeasure:[~SWLon TO ~NELon]' limit 10000;"
 const getMeasurementData = "SELECT * FROM waq.measurement_data WHERE solr_query='lat:[~SWLat TO ~NELat] AND lng:[~SWLon TO ~NELon]' limit 10000;"
-const getMeasurements = "SELECT * FROM waq.measurement_data WHERE solr_query='lat:[~SWLat TO ~NELat] AND lng:[~SWLon TO ~NELon] AND contaminant_type:~Type' limit 10000;"
+//const getMeasurements = "SELECT * FROM waq.measurement_data WHERE solr_query='lat:[~SWLat TO ~NELat] AND lng:[~SWLon TO ~NELon] AND contaminant_type:~Type' limit 10000;"
 
 app.use(bodyParser.json());
 app.set('json spaces', 2);
@@ -117,23 +117,7 @@ app.get('/getWaterSites/:SWLat/:SWLon/:NELat/:NELon', function(req, res) {
     });
   });
 
-app.get('/getMeasurementData/:SWLat/:SWLon/:NELat/:NELon', function(req, res) {
-  var SWLat = parseFloat(req.params.SWLat);
-  var SWLon = parseFloat(req.params.SWLon);
-  var NELat = parseFloat(req.params.NELat);
-  var NELon = parseFloat(req.params.NELon);
-  query = getMeasurementData.replace("~SWLat",SWLat).replace("~SWLon",SWLon).replace("~NELat",NELat).replace("~NELon",NELon);
-  //console.log(SWLat,SWLon,NELat,NELon);
-  //console.log(query);
-  client.execute(query, function(err, result) {
-    if (err) {
-      res.status(404).send({ "error" : 'Could not fetch measurement data' });
-      //console.log(err);
-    } else {
-      res.json(result.rows);        }
-    });
-  });
-
+/*
 app.get('/getMeasurements/:Type/:SWLat/:SWLon/:NELat/:NELon', function(req, res) {
   var SWLat = parseFloat(req.params.SWLat);
   var SWLon = parseFloat(req.params.SWLon);
@@ -150,16 +134,46 @@ app.get('/getMeasurements/:Type/:SWLat/:SWLon/:NELat/:NELon', function(req, res)
     } else {
       res.json(result.rows);        }
     });
-  });
+});
+*/
 
-app.get('/getStateCounts/', function(req, res) {
-  console.log("getStateCounts");
-  console.log(req.query.type);
-  console.log(req.query.state);
-  var response = [];
-  response[0] = {};
-  response[0]['name'] = "Ankit";
-  res.json(response);
+const getMeasurements = "SELECT * FROM waq.measurement_data WHERE solr_query='lat:[~SWLat TO ~NELat] AND lng:[~NELon TO ~SWLon] AND contaminant_type:~type AND site_id:~site_id AND state_id:~state_id AND measurement_date:~date AND contaminant:~contaminant AND status:~status AND rank:~rank' limit 10000;"
+
+app.get('/getMeasurements/', function(req, res) {
+  var site_id, state_id, type, date, contaminant, status, rank;
+
+  if(req.query.site_id) site_id=req.query.site_id; else site_id="*";
+  if(req.query.state_id) state_id=req.query.state_id; else state_id="*";
+  if(req.query.type) type=req.query.type; else type="*";
+  if(req.query.date) date=req.query.date; else date="*";
+  if(req.query.contaminant) contaminant=req.query.contaminant; else contaminant="*";
+  if(req.query.status) status=req.query.status; else status="*";
+  if(req.query.rank) rank=req.query.rank; else rank=1;
+
+  var SWLat = parseFloat(req.query.SWLat);
+  var SWLon = parseFloat(req.query.SWLon);
+  var NELat = parseFloat(req.query.NELat);
+  var NELon = parseFloat(req.query.NELon);
+
+  query = getMeasurements.replace("~SWLat",SWLat)
+                         .replace("~SWLon",SWLon)
+                         .replace("~NELat",NELat)
+                         .replace("~NELon",NELon)
+                         .replace("~type",type)
+                         .replace("~site_id",site_id)
+                         .replace("~state_id",state_id)
+                         .replace("~date",date)
+                         .replace("~contaminant",contaminant)
+                         .replace("~status",status)
+                         .replace("~rank",rank);
+  //console.log(query);
+  client.execute(query, function(err, result) {
+    if (err) {
+      res.status(404).send({ "error" : 'Could not fetch measurement data' });
+      //console.log(err);
+    } else {
+      res.json(result.rows);        }
+    });
 });
 
 var server = app.listen(8080, function() {
