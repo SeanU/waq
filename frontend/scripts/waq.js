@@ -19,7 +19,7 @@ function initMap() {
     minZoom:10,
     disableDoubleClickZoom: true
 
-    });                
+    });
 
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
@@ -52,7 +52,7 @@ function initMap() {
             marker = null;
           });
           markers = [];
-          
+
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
@@ -135,13 +135,13 @@ function initMap() {
 function redraw(markers) {
     console.log('Redrawing');
     resetSummaryChart();
-  
+
     var bounds = map.getBounds();
     var ne = bounds.getNorthEast(); // LatLng of the north-east corner
     var sw = bounds.getSouthWest(); // LatLng of the south-west corder
     var nw = new google.maps.LatLng(ne.lat(), sw.lng());
-    var se = new google.maps.LatLng(sw.lat(), ne.lng());                                                
-    
+    var se = new google.maps.LatLng(sw.lat(), ne.lng());
+
     console.log("Markers: ", markers);
 
     markers.forEach(function(marker) {
@@ -152,7 +152,7 @@ function redraw(markers) {
 
     var markerCluster = new MarkerClusterer(map, [],
             {
-            imagePath: 'images/m', 
+            imagePath: 'images/m',
             maxZoom: '10',
             minimumClusterSize: '6'
             });
@@ -161,7 +161,7 @@ function redraw(markers) {
     fetchSites(ne,sw,map, markerCluster);
     resetSummaryChart();
     populateTable();
-      
+
 
 }
 
@@ -185,7 +185,7 @@ function placeMarker(location) {
 
 
     var marker = new google.maps.Marker({
-        position: location, 
+        position: location,
         map: map,
         icon: 'images/waqdog.png'
     });
@@ -224,7 +224,7 @@ function fetchInfoWindowHeader(){
 }
 
 function populateMarkerTable(loc) {
-    
+
     var modelWaterURL = 'http://api.waq.dog:5000/getPrediction?type=Water&lat=' + loc.lat() + '&lng=' + loc.lng();
     var modelAirURL = 'http://api.waq.dog:5000/getPrediction?type=Air&lat=' + loc.lat() + '&lng=' + loc.lng();
 
@@ -236,7 +236,7 @@ function populateMarkerTable(loc) {
             thisRow = thisPrediction[datapoint];
             console.log('Datapoint: ', datapoint);
             $('#markertable'+predictionTableNumber+' tr:last').after('<tr><td data-field=status>'+thisRow.contaminant+'</td><td>'+thisRow.status+'</td></tr>');
-            
+
         });
 
     console.log('Prediction: ', thisPrediction);
@@ -290,7 +290,7 @@ function mapTableCrossLink(marker=null,e=null, row=null, $element=null){
                     console.log('dtn',dtNodes);
                     dtNodes[i+1].classList.add('success');
                     console.log('Row/marker match! Row=', i, '. ', thisPosition, newPosition);
-                    
+
                     var scrollPx = (i-5)/(len+1) * $table[0].scrollHeight;
                     console.log('Scroll Px: ', scrollPx, ' / ', $table[0].scrollHeight);
                     $table.bootstrapTable('scrollTo',scrollPx);
@@ -334,7 +334,7 @@ function getFilterStates(){
 
 }
 function fetchSites(ne,sw,map, markerCluster) {
-    
+
     resetSummaryChart(); //sets the summary plot bars to zero
     markerCluster.resetViewport(); // present a clean image after zooming and panning
     data=null;
@@ -355,7 +355,7 @@ function fetchSites(ne,sw,map, markerCluster) {
     $.getJSON(data_api_url, function(data) {
 
     //data is the JSON string
-        
+
         console.log('Number of return datapoints: '+data.length);
 
         var image = 'http://findicons.com/files/icons/1156/fugue/16/water.png'; // a backup
@@ -373,7 +373,7 @@ function fetchSites(ne,sw,map, markerCluster) {
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0)
             };
-        
+
         var im_red = {
             url: 'images/redwater.png',
             // size: new google.maps.Size(16, 16),
@@ -394,7 +394,7 @@ function fetchSites(ne,sw,map, markerCluster) {
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0)
             };
-        
+
         var im_redair = {
             url: 'images/redair.png',
             // size: new google.maps.Size(16, 16),
@@ -402,7 +402,7 @@ function fetchSites(ne,sw,map, markerCluster) {
             anchor: new google.maps.Point(0, 0)
             };
 
-        
+
         // loop through each point returned from the API
         $.each(data,function(datapoint){
 
@@ -469,24 +469,24 @@ function fetchSites(ne,sw,map, markerCluster) {
                 // label: thisLabel
             });
 
-            
-            thismarker.addListener('click', 
+
+            thismarker.addListener('click',
                 function() {
                     mapTableCrossLink(marker=thismarker);
                     });
 
-            thismarker.addListener('dblclick', 
+            thismarker.addListener('dblclick',
                 function() {
                     console.log('Map marker double-clicked.  Centering map on marker.');
                     map.setCenter(thismarker.getPosition());
                     });
-            
+
             //sensorMarkers.push(thismarker);
             markers.push(thismarker);
             markerCluster.addMarker(thismarker);
         });
         populateTable(data,clearOld=true);
-        makeSummaryChart(data); 
+        makeSummaryChart(data);
     });
 
 return markers;
@@ -511,10 +511,10 @@ function populateTable(dat,clearOld=false) {
 
         // Selecting a row highlights the position on a map
         $(function () {
-            $table.on('click-row.bs.table', 
+            $table.on('click-row.bs.table',
                 function (e, row, $element) {
                     mapTableCrossLink(marker=null,e=e, row=row, $element=$element)
-                });                
+                });
         });
         console.log(jsonData);
     }
@@ -530,7 +530,7 @@ function CardFormatter(value, row, index) {
             return "<a href='pollutant.html?pollutant=lead_air' target='_blank'>"+value+"</a>";
         }
         else{
-            return "<a href='pollutant.html?pollutant=lead_water' target='_blank'>"+value+"</a>";   
+            return "<a href='pollutant.html?pollutant=lead_water' target='_blank'>"+value+"</a>";
         }
     }
     else{
@@ -620,7 +620,7 @@ function makeSummaryChart(data) {
 
     var totalCountAir = greenCountAir + yellowCountAir + redCountAir;
     var totalCountWater = greenCountWater + yellowCountWater + redCountWater;
-    
+
     console.log(' Water Total Count: ', totalCountWater);
     console.log(' Water Green Count: ' + greenCountWater);
     console.log(100*greenCountWater/totalCountWater + '%');
@@ -664,7 +664,7 @@ $('#HomeButton').click(function() {
     $('.navpanebutton').removeClass("current");
     $('#homepane').removeClass("hidden");
     $('#knowmorepane').addClass("hidden");
-    $('#contactuspane').addClass("hidden");  
+    $('#contactuspane').addClass("hidden");
     $('#HomeButton').addClass("current");
     });
 
@@ -672,16 +672,20 @@ $('#KnowMoreButton').click(function() {
     $('.navpanebutton').removeClass("current");
     $('#homepane').addClass("hidden");
     $('#contactuspane').addClass("hidden");
-    $('#knowmorepane').removeClass("hidden");   
+    $('#knowmorepane').removeClass("hidden");
     $('#KnowMoreButton').addClass("current");
     });
 
 $('#ContactUsButton').click(function() {
     $('.navpanebutton').removeClass("current");
     $('#contactuspane').removeClass("hidden");
-    $('#knowmorepane').addClass("hidden");  
-    $('#homepane').addClass("hidden");   
+    $('#knowmorepane').addClass("hidden");
+    $('#homepane').addClass("hidden");
     $('#ContactUsButton').addClass("current");
+    });
+
+$('#HelpButton').click(function() {
+    $('body').chardinJs('start');
     });
 
 $('#BigMapButton').click(function() {
@@ -697,4 +701,3 @@ $('#BigTableButton').click(function() {
     $('#map-container').css('width','35%');
     $('#tools-container').css('width','64.5%');
     });
-
