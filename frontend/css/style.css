@@ -10076,8 +10076,8 @@ div.layout-style {
 }
 #header-container {
     position: relative;
-    top: 0px;
-    height: 10%;
+    top: 10px;
+    /*height: 10%;*/
     width: 100%;
     left: 0px;
 }
@@ -10226,8 +10226,8 @@ div.infowindow {
     position: absolute;
     top: 0;
     left: 0;
-    height: 650px;
-    width: 1270px;
+    height: 100%;
+    width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
 }

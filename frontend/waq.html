@@ -38,46 +38,66 @@
 
 <!-- Wrapper -->
 <div id="wrapper">
+	<div class="clearfix"></div>
+	<header id="header-container" class="fullwidth">
+		<!-- Header -->
+		<div id="header">
+			<div class="container">
 
-	<!-- Header -->
-	<div id="header">
-			<!-- Logo -->
-			<div id="logo">
-				<a href="index.html"><img src="images/logo.png" alt=""></a>
-			</div>
+				<!-- Left Side Content -->
+				<div class="left-side">
+
+					<!-- Logo -->
+					<div id="logo">
+						<a href="index.html"><img src="images/logo.png" alt=""></a>
+					</div>
 
 
-			<!-- Main Navigation -->
-			<div id="page-nav">
-				<nav id="navigation" class="style-1">
+					<!-- Mobile Navigation -->
+					<div class="menu-responsive">
+						<i class="fa fa-reorder menu-trigger"></i>
+					</div>
+
+
+					<!-- Main Navigation -->
+					<nav id="navigation" class="style-1">
+						<ul id="responsive">
+
+							<li><a id="HomeButton" class="navpanebutton current" href="#">Home</a></li>
+
+							<li><a id="KnowMoreButton" class="navpanebutton" href="#">Know More</a></li>
+
+							<li><a id="ContactUsButton" class="navpanebutton" href="#">Contact Us</a></li>
+
+						</ul>
+					</nav>
+					<div class="clearfix"></div>
+					<!-- Main Navigation / End -->
+
+				</div>
+				<!-- Left Side Content / End -->
+
+				<!-- Right Side Content / End -->
+				<div class="right-side">
+					<!-- Header Widget -->
+				<nav id="navigation" class="style-1" style="float:right">
 					<ul id="responsive">
-
-						<li id="HomeButton" class="navpanebutton current"><a href="#">Home</a>
+						<li><a id="BigMapButton" class="current mapsizebutton" href="#">Big Map</a>
 						</li>
-
-						<li id="KnowMoreButton" class="navpanebutton"><a href="#">Know More</a>
-						</li>
-
-						<li id="ContactUsButton" class="navpanebutton"><a href="#">Contact Us</a>
-						</li>
-
-					</ul>
-				</nav>
-			</div>
-
-			<div id="layout-nav" style="border-left:solid 1px #000">
-				<nav id="navigation" class="style-1">
-					<ul id="responsive">
-						<li id="BigMapButton" class="current mapsizebutton"><a href="#">Big Map</a>
-						</li>
-						<li id="BigTableButton" class="mapsizebutton"><a href="#">Big Table</a>
+						<li><a id="BigTableButton" class="mapsizebutton" href="#">Big Table</a>
 						</li>
 					</ul>
+					<!-- Header Widget / End -->
 				</nav>
-			</div>
-	</div> <!-- Header / End -->
+				</div>
+				<!-- Right Side Content / End -->
 
-	
+			</div>
+		</div>
+		<!-- Header / End -->
+
+	</header>
+	<div class="clearfix"></div>
 
 	<!-- Content
 	================================================== -->
@@ -98,7 +118,7 @@
 				<input id="pac-input" class="controls" type="text" placeholder="Enter Search Location">
 			</div>
 
-			
+
 
 				<div id="summary-chart-holder">
 					<div id="water-summary-chart-container" class="summary-chart-container">
@@ -108,7 +128,7 @@
 						<div id="green-prop-box-air" class="green-prop-box prop-box airbox" data-toggle="tooltip" title="Proportion of in-view air measurements with a status of Green (good)"></div><div id="amber-prop-box-air" class="amber-prop-box prop-box airbox" data-toggle="tooltip" title="Proportion of in-view air measurements with a status of Amber (borderline)"></div><div id="red-prop-box-air" class="red-prop-box prop-box airbox" data-toggle="tooltip" title="Proportion of in-view water measurements with a status of Red (bad)"></div>
 					</div>
 					<div id="watericoncontainer" class="icon-container">
-						<img src="images/whitewaterdrop.png" alt="White water drop">					
+						<img src="images/whitewaterdrop.png" alt="White water drop">
 					</div>
 
 					<div id="airiconcontainer" class="icon-container">
@@ -121,7 +141,7 @@
 			<div id="map">
 				<script src=scripts/waq.js></script>
 	        	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATqp-SH3dfKTkATjFfw1MuYeEzs_JeO9E&callback&libraries=places&callback=initMap" async defer></script>
-		    </div>  
+		    </div>
 		</div>
 
 		<div id="tools-container">
@@ -212,8 +232,8 @@
 				<!-- Search / End -->
 			</div>
 		<div class="table-container">
-				<table  id="table" 
-	                data-toggle="table" 
+				<table  id="table"
+	                data-toggle="table"
 	                data-toolbar=".toolbar"
 	                data-search="true"
 	                data-filter-control="true"
@@ -242,7 +262,7 @@
 	    </div> <!-- End table container  -->
 	</div> <!-- End main-content container  -->
 
-	
+
 
 </div> <!-- End main content  -->
 
@@ -271,21 +291,21 @@
 <div id="knowmorepane" class="main-content-container hidden">
 	<h1> Know More About WAQ</h1>
 
-		<p>WAQ is a toxic substance data consolidation platform which allows virtually any user easy access to their overall exposure levels of pollutants while providing the the ability to drill down into specifics with context, resources, and analysis seamlessly integrated into visualizations. The WAQ platform empowers users with digestible and accessible information to make pertinent decisions for themselves and their families. This way the next time you take your kid out for a long hike and let your dog swim in the stream you are aware of your exposure.</p>
+	<p>WAQ is a toxic substance data consolidation platform which allows virtually any user easy access to their overall exposure levels of pollutants while providing the ability to drill down into specifics with context, resources, and analysis seamlessly integrated into visualizations. The WAQ platform empowers users with digestible and accessible information to make pertinent decisions for themselves and their families. This way the next time you take your kid out for a long hike and let your dog swim in the stream you are aware of your exposure.</p>
 
-		<h2> Data Sources </h2>
-		<p>WAQ uses raw air and water quality data from the US Evironmental Protection Agency (EPA) as well as EPA regulation levels and standards to provide the user with digestable information on contaminants thruoghout the US. The data is cleaned, standardized, and consolidated to provide easy access to any user.</p>
+	<h2> Data Sources</h2>
+	<p>WAQ uses raw air and water quality data from the US Environmental Protection Agency (EPA) as well as EPA regulation levels and standards to provide the user with digestible information on contaminants throughout the US. The data is cleaned, standardized, and consolidated to provide easy access to any user.</p>
 
-		<h2> Color Codes</h2>
-		<p>The main WAQ page allows user to search for any location natiowide and quickly see nearby measurment sites and the status of polluants on a color coded scale. 
-		<ul>Red samples are above regulated limits and may pose health risks</ul>
-		<ul>Amber/Yellow samples are below regulated limits but above recomended levels and prolonged exposure may pose risk</ul>
-		<ul>Green samples are below recomended limits and (theoretically) pose no health risks</ul></p>
+	<h2> Color Levels</h2>
+	<p>The main WAQ page allows user to search for any location nationwide and quickly see nearby measurement sites and the status of pollutants on a color coded scale.
+	<ul>Red samples are above regulated limits and may pose health risks</ul>
+	<ul>Yellow samples are below regulated limits but above recommended levels and exposure to high risk individuals or prolonged exposure may pose risk</ul>
+	<ul>Green samples are below recommended limits and pose no health risks</ul></p>
 
-		<h2> Machine Learning </h2>
-		<p>WAQ also provides a machine learning model estimate of the location searched, which is predicted using historical data. This estimate allows the user to see a prediction for areas that may not have as many sample sites nearby. The model estimate is differentied from the actual measurements to distunguish concrete measurements from estimataions. 
-		</p>
+	<h2> Machine Learning Estimates</h2>
+	<p> Warning: The contaminant estimates are a work in progress and are subject to measurement bias from the historical data. Estimates are intended for the user to get a sense of their local situation but should not be treated as fact.</p>
 
+	<p>WAQ also provides a machine learning model to estimate the contaminant values of any location a pin is dropped. This estimate allows the user to see a prediction for areas that may not have as many sample sites nearby. These predictions are built off of historical data and use random forest and k-nearest neighbor machine learning algorithms building off of success noted in academic literature. Separate models were tested and validated for each contaminant to capture nuances in the data. Model improvements will be continually updated to improve accuracy of estimates. The model estimate is also differentiated from the actual measurements to distinguish concrete measurements from estimations.</p>
 </div>
 
 
